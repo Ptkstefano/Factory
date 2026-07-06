@@ -1,3 +1,52 @@
 [gd_scene format=3 uid="uid://cv7d02yll1qet"]
 
+[ext_resource type="PackedScene" uid="uid://c6xlanquy1of5" path="res://level.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dbqgsdfb7t3je" path="res://no_clip.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://bhxcnt7gk30wm" path="res://enemy.gd" id="3_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
+sky_top_color = Color(0.6727528, 0.7550188, 0.92679596, 1)
+sky_horizon_color = Color(0.20022726, 0.11367855, 0.044912383, 1)
+sky_energy_multiplier = 1.53
+
+[sub_resource type="Sky" id="Sky_oi3di"]
+sky_material = SubResource("ProceduralSkyMaterial_1bvp3")
+
+[sub_resource type="Environment" id="Environment_lquwl"]
+background_mode = 2
+background_energy_multiplier = 0.4
+sky = SubResource("Sky_oi3di")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bvp3"]
+radius = 0.2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lquwl"]
+
 [node name="Main" type="Node3D" unique_id=1972801694]
+
+[node name="Level" parent="." unique_id=568020251 instance=ExtResource("1_0xm2m")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1125490905]
+transform = Transform3D(0.096581146, -0.255736, 0.9619102, 0.02554886, 0.9667467, 0.25445658, -0.99499714, 0, 0.09990326, 119.31347, 6.2845354, 67.09911)
+script = ExtResource("2_h2yge")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=982128917]
+environment = SubResource("Environment_lquwl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1607807308]
+transform = Transform3D(-0.85771304, -0.49148566, 0.15089831, 0.06723212, 0.18376014, 0.9806692, -0.5097139, 0.85127795, -0.12456988, 4.867775, 16.862469, -8.431232)
+shadow_enabled = true
+
+[node name="Enemy" type="CharacterBody3D" parent="." unique_id=904930555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.749, 1.8877382, 68.189)
+script = ExtResource("3_h2yge")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy" unique_id=2103335262]
+unique_name_in_owner = true
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy" unique_id=1648815717]
+shape = SubResource("CapsuleShape3D_1bvp3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy" unique_id=117430044]
+mesh = SubResource("CapsuleMesh_lquwl")
