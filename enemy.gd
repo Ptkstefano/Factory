@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@export var move_speed: float = 10.0
-@export var acceleration: float = 12.0
+@export var move_speed: float = 5.0
+@export var acceleration: float = 6.0
 
 @export var wait_time_min: float = 0.5
 @export var wait_time_max: float = 2.0
@@ -32,15 +32,24 @@ func _ready() -> void:
 	await get_tree().physics_frame
 
 	_choose_new_destination()
+	
+	$StateTimer.timeout.connect(on_state_timer_timeout)
 
 
 func _physics_process(delta: float) -> void:
 
 	if state == STATES.WALKING:
 		move_towards_destination(delta)
+	else:
+		stop_moving(delta)
 
+
+func on_state_timer_timeout():
+	if state == STATES.IDLE:
+		_choose_new_destination()
 
 func move_towards_destination(delta):
+	
 	if navigation_agent.is_navigation_finished():
 		_arrive_at_destination()
 		return
@@ -64,15 +73,22 @@ func move_towards_destination(delta):
 
 	var desired_velocity: Vector3 = direction * move_speed
 
-	#velocity.x = move_toward(velocity.x, desired_velocity.x, acceleration * delta)
-	#velocity.z = move_toward(velocity.z, desired_velocity.z, acceleration * delta)
+	velocity.x = move_toward(velocity.x, desired_velocity.x, acceleration * delta)
+	velocity.z = move_toward(velocity.z, desired_velocity.z, acceleration * delta)
 	
-	velocity = direction * 20
-	
+	#velocity = direction * 20
+
 
 	if rotate_towards_movement:
 		_face_direction(direction)
 
+	_apply_gravity(delta)
+	move_and_slide()
+	
+func stop_moving(delta):
+	velocity.x = move_toward(velocity.x, 0, acceleration * delta)
+	velocity.z = move_toward(velocity.z, 0, acceleration * delta)
+	
 	_apply_gravity(delta)
 	move_and_slide()
 
@@ -106,6 +122,8 @@ func _choose_new_destination() -> void:
 	current_destination = chosen_destination
 	print(current_destination)
 	navigation_agent.target_position = current_destination.global_position
+	
+	state = STATES.WALKING
 
 
 func _arrive_at_destination() -> void:
@@ -113,7 +131,9 @@ func _arrive_at_destination() -> void:
 	#velocity.x = 0.0
 	#velocity.z = 0.0
 
-	_choose_new_destination()
+	state = STATES.IDLE
+	$StateTimer.start()
+	#_choose_new_destination()
 
 
 func _apply_gravity(delta: float) -> void:
