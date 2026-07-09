@@ -18,7 +18,10 @@ var current_destination: Node3D = null
 
 enum STATES {
 	IDLE,
-	WALKING
+	PATROLLING,
+	INVESTIGATING,
+	CHASING,
+	SHOOTING
 }
 
 var state : STATES = STATES.IDLE
@@ -41,25 +44,22 @@ func _ready() -> void:
 	%AnimationTree.get('parameters/playback').start("WalkAnim")
 
 func _physics_process(delta: float) -> void:
+	
 	var horizontal_speed = Vector3(velocity.x, 0.0, velocity.z).length()
-	
-	var target_blend = clamp(horizontal_speed / move_speed, 0.0, 1.0)
-
-	walk_blend = move_toward(
-		walk_blend,
-		target_blend,
-		1 * delta
-	)
-	
-	print(horizontal_speed)
-	
 	%AnimationTree.set("parameters/WalkAnim/blend_position", horizontal_speed - 1)
 	
-	if state == STATES.WALKING:
+	if state == STATES.PATROLLING:
 		move_towards_destination(delta)
 
 	else:
 		stop_moving(delta)
+
+func change_state(new_state : STATES):
+	match new_state:
+		STATES.IDLE:
+			$StateTimer.start()
+			return
+		
 
 
 func on_state_timer_timeout():
@@ -139,8 +139,8 @@ func _choose_new_destination() -> void:
 	print(current_destination)
 	navigation_agent.target_position = current_destination.global_position
 	
-	state = STATES.WALKING
-	
+	change_state(STATES.PATROLLING)
+
 
 
 func _arrive_at_destination() -> void:
@@ -148,8 +148,7 @@ func _arrive_at_destination() -> void:
 	#velocity.x = 0.0
 	#velocity.z = 0.0
 
-	state = STATES.IDLE
-	$StateTimer.start()
+	change_state(STATES.IDLE)
 	#_choose_new_destination()
 
 

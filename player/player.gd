@@ -21,6 +21,9 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera_base_y = %Camera3D.position.y
 	camera_target_y = camera_base_y
+	$ItemPickup.area_entered.connect(on_pickup_area_entered)
+	
+	%Camera3D.make_current()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -85,3 +88,7 @@ func _update_headbob(delta: float) -> void:
 	else:
 		bob_time = 0.0
 		%Camera3D.position.y = lerpf(%Camera3D.position.y, camera_base_y, delta * 10.0)
+
+func on_pickup_area_entered(area):
+	#inventory.append(area.get_parent().id)
+	print(area.get_parent().object_name)
