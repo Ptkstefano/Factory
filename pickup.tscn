@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b53cdvil04vgy"]
+
+[ext_resource type="Script" uid="uid://gssr68w26hck" path="res://pickup.gd" id="1_iqk3k"]
+[ext_resource type="PackedScene" uid="uid://20geb0s6trxd" path="res://PizzaDoggy2/GLB (recommended)/Structures/rusty_crowbar_mx_1.glb" id="2_weqpt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqk3k"]
+
+[node name="Pickup" type="Node3D" unique_id=436470555]
+script = ExtResource("1_iqk3k")
+mesh = ExtResource("2_weqpt")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2033123399]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1950956910]
+shape = SubResource("BoxShape3D_iqk3k")

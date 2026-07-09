@@ -2,9 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://c6xlanquy1of5" path="res://level.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dbqgsdfb7t3je" path="res://no_clip.gd" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dlox4x6p1etvm" path="res://enemy.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cns6ok6veg2oi" path="res://player/player.tscn" id="2_player"]
-[ext_resource type="Script" uid="uid://bhxcnt7gk30wm" path="res://enemy.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dlox4x6p1etvm" path="res://enemy.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b53cdvil04vgy" path="res://pickup.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ckiuup6sxr34i" path="res://PizzaDoggy/Items & Weapons/cassette_tape_mp_1.glb" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://lb8bdh1gc7ds" path="res://PizzaDoggy/Items & Weapons/canned_food_mp_3.glb" id="7_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
 sky_top_color = Color(0.6727528, 0.7550188, 0.92679596, 1)
@@ -35,21 +37,34 @@ edge_max_error = 0.51
 environment = SubResource("Environment_lquwl")
 
 [node name="Level" parent="." unique_id=568020251 instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.786064, 0, -29.137024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.749886, 0, -29.207726)
+metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1125490905]
 transform = Transform3D(0.09989775, 0.010498688, 0.99494237, -0.0010488536, 0.999945, -0.010446146, -0.99499714, -1.8340769e-09, 0.09990328, 24.390656, 1.4737873, 34.00021)
 script = ExtResource("2_h2yge")
+
 [node name="Player" parent="." unique_id=867598267 instance=ExtResource("2_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.05481, -0.02686292, 69.43767)
+transform = Transform3D(-0.18459891, 0, 0.98281395, 0, 1, 0, -0.98281395, 0, -0.18459891, 21.123035, -0.02686292, 33.62182)
+
+[node name="SpotLight3D" parent="Player/Camera3D/pistol_mp_1_3/flashlight_mp_12" parent_id_path=PackedInt32Array(867598267, 2069393863) index="1" unique_id=1681132301]
+light_energy = 2.399
+shadow_enabled = true
+spot_range = 327.359
+spot_attenuation = 0.34
+spot_angle = 24.34
+spot_angle_attenuation = 1.3660408
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1607807308]
 transform = Transform3D(-0.85771304, -0.49148566, 0.15089831, 0.06723212, 0.18376014, 0.9806692, -0.5097139, 0.85127795, -0.12456988, 4.867775, 16.862469, -8.431232)
+visible = false
 editor_only = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2126033665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.786064, -0.41328812, -29.137024)
+visible = false
 navigation_mesh = SubResource("NavigationMesh_h2yge")
+metadata/_edit_lock_ = true
 
 [node name="Enemy" parent="." unique_id=1046048868 instance=ExtResource("4_lquwl")]
 transform = Transform3D(0.1396284, 0, -0.990204, 0, 1, 0, 0.990204, 0, 0.1396284, -23.427149, 0.019379072, 34.598866)
@@ -80,3 +95,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.88911, 0.34658742, -8.927
 
 [node name="Waypoint8" type="Node3D" parent="Waypoints" unique_id=19992617 groups=["Waypoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.29628, 0.34658742, 32.57527)
+
+[node name="Pickups" type="Node3D" parent="." unique_id=1214439542]
+
+[node name="Pickup" parent="Pickups" unique_id=436470555 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7946515, 0.016869783, 38.389496)
+object_name = "Crowbar"
+
+[node name="Pickup2" parent="Pickups" unique_id=536549004 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9232302, 0.016869783, 38.389496)
+mesh = ExtResource("6_7mycd")
+object_name = "Tape"
+
+[node name="Pickup3" parent="Pickups" unique_id=1632438501 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9232302, 0.016869783, 35.266018)
+mesh = ExtResource("7_272bh")
+object_name = "Food"
+
+[editable path="Player"]
