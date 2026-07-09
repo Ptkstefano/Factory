@@ -21,7 +21,7 @@ enum STATES {
 	WALKING
 }
 
-var state : STATES = STATES.WALKING
+var state : STATES = STATES.IDLE
 
 var walk_blend = 0
 
@@ -32,10 +32,11 @@ func _ready() -> void:
 
 	# Wait one physics frame so the navigation map is ready.
 	await get_tree().physics_frame
-
-	_choose_new_destination()
 	
 	$StateTimer.timeout.connect(on_state_timer_timeout)
+	
+	## TODO - Do this when player seems him first time
+	$StateTimer.start(5)
 	
 	%AnimationTree.get('parameters/playback').start("WalkAnim")
 
