@@ -436,9 +436,8 @@ material = SubResource("StandardMaterial3D_2h3vt")
 
 [node name="CSGBox3D34" type="CSGBox3D" parent="Walls/CSGCombiner3D" unique_id=1552897511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.79062, 2.2479155, 69.93488)
-visible = false
+operation = 2
 size = Vector3(47.553673, 4.5, 0.1)
-material = SubResource("StandardMaterial3D_2h3vt")
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="Walls/CSGCombiner3D" unique_id=1842180635]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.9229, 2.2479155, -13.512261)
