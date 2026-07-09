@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://c6xlanquy1of5" path="res://level.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dbqgsdfb7t3je" path="res://no_clip.gd" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dlox4x6p1etvm" path="res://enemy.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cns6ok6veg2oi" path="res://player/player.tscn" id="2_player"]
+[ext_resource type="Script" uid="uid://bhxcnt7gk30wm" path="res://enemy.gd" id="3_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
 sky_top_color = Color(0.6727528, 0.7550188, 0.92679596, 1)
@@ -38,6 +40,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.786064, 0, -29.137024)
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1125490905]
 transform = Transform3D(0.09989775, 0.010498688, 0.99494237, -0.0010488536, 0.999945, -0.010446146, -0.99499714, -1.8340769e-09, 0.09990328, 24.390656, 1.4737873, 34.00021)
 script = ExtResource("2_h2yge")
+[node name="Player" parent="." unique_id=867598267 instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.05481, -0.02686292, 69.43767)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1607807308]
 transform = Transform3D(-0.85771304, -0.49148566, 0.15089831, 0.06723212, 0.18376014, 0.9806692, -0.5097139, 0.85127795, -0.12456988, 4.867775, 16.862469, -8.431232)
