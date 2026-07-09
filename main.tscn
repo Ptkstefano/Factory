@@ -35,7 +35,8 @@ edge_max_error = 0.51
 environment = SubResource("Environment_lquwl")
 
 [node name="Level" parent="." unique_id=568020251 instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.786064, 0, -29.137024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.749886, 0, -29.207726)
+metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1125490905]
 transform = Transform3D(0.09989775, 0.010498688, 0.99494237, -0.0010488536, 0.999945, -0.010446146, -0.99499714, -1.8340769e-09, 0.09990328, 24.390656, 1.4737873, 34.00021)
@@ -50,6 +51,7 @@ editor_only = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2126033665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.786064, -0.41328812, -29.137024)
 navigation_mesh = SubResource("NavigationMesh_h2yge")
+metadata/_edit_lock_ = true
 
 [node name="Enemy" parent="." unique_id=1046048868 instance=ExtResource("4_lquwl")]
 transform = Transform3D(0.1396284, 0, -0.990204, 0, 1, 0, 0.990204, 0, 0.1396284, -23.427149, 0.019379072, 34.598866)
