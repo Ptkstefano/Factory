@@ -488,35 +488,3 @@ area_size = Vector2(3.975, 3.975)
 
 [node name="wall_2_12" type="Node3D" parent="." unique_id=1348596297]
 transform = Transform3D(0.046624277, 0, 0.9989125, 0, 1, 0, -0.9989125, 0, 0.046624277, 130.5891, -4.7683716e-07, 68.895485)
-
-[node name="Waypoints" type="Node3D" parent="." unique_id=878528451]
-
-[node name="Waypoint" type="Node3D" parent="Waypoints" unique_id=450944528 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.566345, 0.34658742, 65.24075)
-
-[node name="Waypoint2" type="Node3D" parent="Waypoints" unique_id=45242638 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.20541, 0.34658742, 65.24075)
-
-[node name="Waypoint3" type="Node3D" parent="Waypoints" unique_id=1496117239 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.20541, 0.34658742, 48.187744)
-
-[node name="Waypoint4" type="Node3D" parent="Waypoints" unique_id=1214240025 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.13047, 0.34658742, 48.187744)
-
-[node name="Waypoint5" type="Node3D" parent="Waypoints" unique_id=2133185660 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.13047, 0.34658742, 12.776531)
-
-[node name="Waypoint6" type="Node3D" parent="Waypoints" unique_id=1620810797 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.096725, 0.34658742, -0.5768566)
-
-[node name="Waypoint7" type="Node3D" parent="Waypoints" unique_id=1391045213 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.371346, 0.34658742, -9.305399)
-
-[node name="Waypoint8" type="Node3D" parent="Waypoints" unique_id=962170573 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.99337, 0.34658742, -7.8224297)
-
-[node name="Waypoint9" type="Node3D" parent="Waypoints" unique_id=1919191438 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.55963, 0.34658742, 11.883671)
-
-[node name="Waypoint10" type="Node3D" parent="Waypoints" unique_id=1485563565 groups=["Waypoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 139.12027, 0.34658742, 43.955017)

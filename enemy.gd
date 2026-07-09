@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@export var move_speed: float = 5.0
-@export var acceleration: float = 6.0
+@export var move_speed: float = 2.0
+@export var acceleration: float = 2.0
 
 @export var wait_time_min: float = 0.5
 @export var wait_time_max: float = 2.0
@@ -23,6 +23,8 @@ enum STATES {
 
 var state : STATES = STATES.WALKING
 
+var walk_blend = 0
+
 func _ready() -> void:
 	randomize()
 
@@ -34,12 +36,27 @@ func _ready() -> void:
 	_choose_new_destination()
 	
 	$StateTimer.timeout.connect(on_state_timer_timeout)
-
+	
+	%AnimationTree.get('parameters/playback').start("WalkAnim")
 
 func _physics_process(delta: float) -> void:
+	var horizontal_speed = Vector3(velocity.x, 0.0, velocity.z).length()
+	
+	var target_blend = clamp(horizontal_speed / move_speed, 0.0, 1.0)
 
+	walk_blend = move_toward(
+		walk_blend,
+		target_blend,
+		1 * delta
+	)
+	
+	print(horizontal_speed)
+	
+	%AnimationTree.set("parameters/WalkAnim/blend_position", horizontal_speed - 1)
+	
 	if state == STATES.WALKING:
 		move_towards_destination(delta)
+
 	else:
 		stop_moving(delta)
 
@@ -63,8 +80,6 @@ func move_towards_destination(delta):
 
 
 	var direction: Vector3 = next_path_position - global_position
-	
-	print(next_path_position)
 
 	direction.y = 0.0
 
@@ -80,7 +95,7 @@ func move_towards_destination(delta):
 
 
 	if rotate_towards_movement:
-		_face_direction(direction)
+		_face_direction(direction, delta)
 
 	_apply_gravity(delta)
 	move_and_slide()
@@ -124,6 +139,7 @@ func _choose_new_destination() -> void:
 	navigation_agent.target_position = current_destination.global_position
 	
 	state = STATES.WALKING
+	
 
 
 func _arrive_at_destination() -> void:
@@ -153,8 +169,17 @@ func _stop_horizontal_movement(delta: float) -> void:
 	velocity.z = move_toward(velocity.z, 0.0, acceleration * delta)
 
 
-func _face_direction(direction: Vector3) -> void:
-	var look_target: Vector3 = global_position + Vector3(direction.x, 0.0, direction.z)
+func _face_direction(direction: Vector3, delta: float) -> void:
+	
+	var turn_speed: float = 2.0
+	var flat_direction := Vector3(direction.x, 0.0, direction.z)
 
-	if look_target.distance_squared_to(global_position) > 0.001:
-		look_at(look_target, Vector3.UP)
+	if flat_direction.length_squared() < 0.001:
+		return
+
+	flat_direction = flat_direction.normalized()
+
+	var target_y_rotation := atan2(-flat_direction.x, -flat_direction.z)
+	var weight := 1.0 - exp(-turn_speed * delta)
+
+	rotation.y = lerp_angle(rotation.y, target_y_rotation, weight)
