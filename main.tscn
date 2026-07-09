@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://c6xlanquy1of5" path="res://level.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dbqgsdfb7t3je" path="res://no_clip.gd" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cbdh36x0fqr11" path="res://wwi dude.glb" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dlox4x6p1etvm" path="res://enemy.tscn" id="4_lquwl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
@@ -15,7 +14,7 @@ sky_material = SubResource("ProceduralSkyMaterial_1bvp3")
 
 [sub_resource type="Environment" id="Environment_lquwl"]
 background_mode = 2
-background_energy_multiplier = 0.4
+background_energy_multiplier = 0.04
 sky = SubResource("Sky_oi3di")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h2yge"]
@@ -30,29 +29,26 @@ edge_max_error = 0.51
 
 [node name="Main" type="Node3D" unique_id=1972801694]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=615226541]
+environment = SubResource("Environment_lquwl")
+
 [node name="Level" parent="." unique_id=568020251 instance=ExtResource("1_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.786064, 0, -29.137024)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1125490905]
-transform = Transform3D(0.096581146, -0.255736, 0.9619102, 0.02554886, 0.9667467, 0.25445658, -0.99499714, 1.8720088e-09, 0.09990327, 15.527403, 6.2845354, 37.96209)
+transform = Transform3D(0.09989775, 0.010498688, 0.99494237, -0.0010488536, 0.999945, -0.010446146, -0.99499714, -1.8340769e-09, 0.09990328, 24.390656, 1.4737873, 34.00021)
 script = ExtResource("2_h2yge")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=982128917]
-environment = SubResource("Environment_lquwl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1607807308]
 transform = Transform3D(-0.85771304, -0.49148566, 0.15089831, 0.06723212, 0.18376014, 0.9806692, -0.5097139, 0.85127795, -0.12456988, 4.867775, 16.862469, -8.431232)
-shadow_enabled = true
+editor_only = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2126033665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.786064, -0.41328812, -29.137024)
 navigation_mesh = SubResource("NavigationMesh_h2yge")
 
-[node name="wwi dude" parent="." unique_id=1343090745 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(0.19934313, 0, 0.34100926, 0, 0.395, 0, -0.34100926, 0, 0.19934313, 32.911537, 1.0075272, 37.5074)
-
 [node name="Enemy" parent="." unique_id=1046048868 instance=ExtResource("4_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1100216, 0.019379072, 37.38189)
+transform = Transform3D(0.1396284, 0, -0.990204, 0, 1, 0, 0.990204, 0, 0.1396284, -23.427149, 0.019379072, 34.598866)
 
 [node name="Waypoints" type="Node3D" parent="." unique_id=694874864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.786064, 0, -29.137024)
