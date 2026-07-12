@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://epf3cfkjfm4s" path="res://PizzaDoggy/Items & Weapons/flashlight_mp_1_flashlight_1.png" id="2_yw30f"]
 [ext_resource type="Texture2D" uid="uid://b2fd78xgpbek3" path="res://PizzaDoggy/Items & Weapons/flashlight_mp_1_flashlight_1_emission.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://cv0ccp168jyp8" path="res://crosshair002.png" id="4_crosshair"]
+[ext_resource type="Texture2D" uid="uid://bar6614m8i5kq" path="res://PizzaDoggy/Lighting/ceiling_lamp_mp_1_1_fake_light_1_fake_light_mp_1.png" id="4_qjkh3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 
@@ -52,10 +53,52 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qe53n")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ooqq5"]
+resource_name = "fake_light_mp_1"
+transparency = 4
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.2)
+albedo_texture = ExtResource("4_qjkh3")
+emission_enabled = true
+emission = Color(0.24780053, 0.24780053, 0.24780053, 1)
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_f3ghm"]
+_surfaces = [{
+"aabb": AABB(-1.5000163, -2.5000014, -1.5000006, 2.9999993, 2.4000015, 3.0000014),
+"format": 34896613377,
+"index_count": 192,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAgAEAAAAAwAFAAEAAgAGAAQAAwAHAAUABgAIAAQABwAJAAUABgAKAAgABwALAAkACgAMAAgACwANAAkACgAOAAwACwAPAA0ADgAQAAwAEQANAA8ADgASABAAEQAPABMAFAAQABIAFQARABMAFAASABYAFQATABcAGAAUABYAGQAVABcAGAAWABoAGQAXABsAHAAYABoAHQAZABsAHAAaAB4AHQAbAB8AHwAcAB4AHwAeAB0AIAAhACIAIAAjACEAIgAkACAAIwAlACEAIgAmACQAIwAnACUAJgAoACQAJwApACUAJgAqACgAJwArACkAKgAsACgAKwAtACkAKgAuACwAKwAvAC0ALgAwACwAMQAtAC8ALgAyADAAMQAvADMANAAwADIANQAxADMANAAyADYANQAzADcAOAA0ADYAOQA1ADcAOAA2ADoAOQA3ADsAPAA4ADoAPQA5ADsAPAA6AD4APQA7AD8APwA8AD4APwA+AD0A"),
+"name": "fake_light_mp_1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("AID//3B9AADbTgAAuQkAAP9/AAAAAAAABH///6F9AAD7gP//oX0AAGolAABqJQAAI7EAALkJAAAwfv//L34AAM+B//8vfgAAuQkAANtOAACU2gAAaiUAAKJ9//8DfwAAXYL//wN/AAAAAAAA/38AAEX2AADbTgAAcH3///9/AACPgv///38AALkJAAAjsQAA//8AAP9/AACiff//+4AAAF2C///7gAAAaiUAAJTaAABF9gAAI7EAADB+///PgQAAz4H//8+BAADbTgAARfYAAJTaAACU2gAABH///12CAAD7gP//XYIAAP9/AAD//wAAI7EAAEX2AAAAgP//joIAAHJ9////fwAA+gkAABxPAABBAAAA/38AAKN9//8FfwAAo33///mAAACrJQAAqyUAAPoJAADisAAAMX7//zF+AAAxfv//zYEAAB1PAAD6CQAAqyUAAFPaAAAFf///o30AAAV///9bggAA/38AAEEAAAAdTwAABPYAAACA//9xfQAAAID//42CAADisAAA+gkAAP9/AAC9/wAA+oD//6N9AAD6gP//W4IAAFPaAACrJQAA4rAAAAT2AADOgf//MX4AAM6B///NgQAABPYAABxPAABT2gAAU9oAAFyC//8FfwAAXIL///mAAAC9/wAA/38AAAT2AADisAAAjoL///9/AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w1ugb"]
+resource_name = "ceiling_lamp_mp_1_1_fake_light_1_ceiling_lamp_mp_1_1_fake_light_1"
+_surfaces = [{
+"aabb": AABB(-1.5000163, -2.5000014, -1.5000006, 2.9999993, 2.4000015, 3.0000014),
+"attribute_data": PackedByteArray("/v8AAPTv/v/+//7/9O8AAP/f/v//3wAACdD+/wnQAAD/v/7//78AAPWv/v/1rwAA/5/+//+fAAAJkP7/CZAAAP9//v//fwAA9W/+//VvAAD/X/7//18AAAlQ/v8JUAAA/z/+//8/AAD1L/7/9S8AAP8f/v//HwAAChD+/woQAAAAAP7/AAAAAChAAAAzMP//KED//zMwAAAeUAAAPSD//x5Q//89IAAAFGAAAEcQ//8UYP7/RxAAAFIA/v9SAAAACXAAAAlw////fwAA/3/+//WPAAD1j/7/6p8AAOqf/v/grwAA4K/+/9a/AADWv/7/y88AAMvP/v/B3wAAwd/+/7bvAAC37///rP8AAKz//v8="),
+"format": 34896613399,
+"index_count": 192,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEAAwAFAAQABQAGAAQABQAHAAYABwAIAAYABwAJAAgACgAIAAkACgAJAAsADAAKAAsADAALAA0ADgAMAA0ADgANAA8AEAAOAA8AEAAPABEAEQASABAAEQATABIAEwAUABIAEwAVABQAFQAWABQAFQAXABYAFwAYABYAFwAZABgAGgAYABkAGgAZABsAHAAaABsAHAAbAB0AHgAcAB0AHgAdAB8AIAAeAB8AIAAfACEAIgAjACQAIgAlACMAJAAmACIAJQAnACMAJAAoACYAJQApACcAKAAqACYAKQArACcAKAAsACoAKQAtACsALQAuACsALQAvAC4ALAAwACoALAAxADAAMQAyADAAMQAzADIANAAyADMANAAzADUANgA0ADUANgA1ADcAOAA2ADcAOAA3ADkAOgA4ADkAOgA5ADsAOwA8ADoAOwA9ADwAPQA+ADwAPQA/AD4APwBAAD4APwBBAEAAQQBCAEAAQQBDAEIA"),
+"material": SubResource("StandardMaterial3D_ooqq5"),
+"name": "fake_light_mp_1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 68,
+"vertex_data": PackedByteArray("AID//3B9XBbbTgAAuQn2Ff9/AAAAAFwWBH///6F99hVqJQAAaiWpFDB+//8vfqkUuQkAANtOjBKiff//A3+MEgAAAAD/f7sPcH3///9/uw+5CQAAI7FXDKJ9///7gFcMaiUAAJTaewgwfv//z4F7CNtOAABF9lAEBH///12CTwT/fwAA//8AAACA//+OggAAI7EAAEX2UAT7gP//XYJPBJTaAACU2nsIz4H//8+BewhF9gAAI7FXDF2C///7gFcM//8AAP9/uw+Pgv///3+7D0X2AADbTowSXYL//wN/jBKU2gAAaiWpFM+B//8vfqkUI7EAALkJ9hX7gP//oX32Ff9/AAAAAFwWAID//3B9XBZyff///3+0D/oJAAAcT08MQQAAAP9/tA+jff//BX9PDKN9///5gIMSqyUAAKsldgj6CQAA4rCDEjF+//8xfnYIMX7//82BnRQdTwAA+glPBKslAABT2p0UBX///6N9TwT/fwAAQQANBACA//9xfQ4EBX///1uC6hUdTwAABPbqFQCA//+NgloW/38AAL3/Whb6gP//W4LpFeKwAAAE9ukVzoH//82BnRRT2gAAU9qdFFyC///5gIMSBPYAAOKwgxKOgv///3+0D73/AAD/f7QPXIL//wV/TwwE9gAAHE9PDM6B//8xfnYIU9oAAKsldgj6gP//o31OBOKwAAD6CU4EAID//3F9DQT/fwAAQQANBM75EHhH+gJmzvkQeEf6BWY69plTOvaZUwDz7UT/8utELvAXOC7wFzh87d0rfO3fK7XqQR+16kEfnectEZznKhH/fyWc/38lnCyRYZgqkWGYQJ9IlUCfSJXdq4GS3quBkhe4z48XuM+P7MT+jOrE/oyZ08SJmdPEiQLmt4UE5raFEPgvhg/4L4bKD+THehIg1MoP5Md6EiDU9wwKuz4VuuD3DAq7PhW64L8JYaxVGMzuvwlhrFUYzO7LG47+yxuO/rUF/5m1Bf+ZAAD/fwAA/3//GUl6/xlJemEsQHZhLEB2CjsIcwo7CHPkRzVw5Ec1cCFUhW0hVIVtumDBartgwWrMbqpnzG6qZ49+M2SPfjNk")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_f3ghm")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_yw30f"]
 size = Vector3(1.520752, 1.1855469, 1.6205444)
 
-[node name="Player" type="CharacterBody3D" unique_id=1948307631]
+[node name="Player" type="CharacterBody3D" unique_id=1948307631 groups=["Player"]]
 script = ExtResource("2_script")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1778714428]
@@ -66,6 +109,10 @@ shape = SubResource("CapsuleShape3D_player")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.418331, 0)
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D" unique_id=1085620429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.042324305, 0)
+current = true
+
 [node name="pistol_mp_1_3" type="Node3D" parent="Camera3D" unique_id=515803797]
 transform = Transform3D(-0.07497878, 0, 0.9971851, 0, 1, 0, -0.9971851, 0, -0.07497878, 0.34527856, -0.19781387, -0.35642442)
 
@@ -73,6 +120,20 @@ transform = Transform3D(-0.07497878, 0, 0.9971851, 0, 1, 0, -0.9971851, 0, -0.07
 
 [node name="flashlight_mp_1" type="MeshInstance3D" parent="Camera3D/pistol_mp_1_3/flashlight_mp_12" unique_id=914062453]
 mesh = SubResource("ArrayMesh_ostyg")
+
+[node name="ceiling_lamp_mp_1_1_fake_light_1" type="MeshInstance3D" parent="Camera3D/pistol_mp_1_3/flashlight_mp_12/flashlight_mp_1" unique_id=1780072885]
+transform = Transform3D(-0.010567591, -0.09009215, 0, 0.07425178, -0.01282201, 0, 0, 0, 0.08, 0.13, -0.015, 0.095)
+rotation_order = 1
+layers = 2
+transparency = 0.99
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_w1ugb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D/pistol_mp_1_3/flashlight_mp_12/flashlight_mp_1" unique_id=1108713775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16677482, 0.055419326, -1.0477379e-09)
+light_energy = 0.1
+light_cull_mask = 4293918722
+omni_attenuation = 2.912
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D/pistol_mp_1_3/flashlight_mp_12" unique_id=1681132301]
 transform = Transform3D(0.030204028, 0, -0.9995439, 0, 1, 0, 0.9995439, 0, 0.030203968, 0.1250271, 0, -0.0018718744)
@@ -101,3 +162,5 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ItemPickup" unique_id=1636222994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07116699, 0.82072437, -0.8410414)
 shape = SubResource("BoxShape3D_yw30f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1452056189]
