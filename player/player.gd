@@ -2,9 +2,11 @@ extends CharacterBody3D
 
 class_name Player
 
-const SPEED = 5.5
+const SPEED = 3.0
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.06
+
+var player_speed = 3.0
 
 const STAND_HEIGHT = 2.0
 const CROUCH_HEIGHT = 1.2
@@ -48,6 +50,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			_try_stand()
 		else:
 			_crouch()
+	elif event.is_action_pressed('sprint'):
+		player_speed = 5
+	elif event.is_action_released('sprint'):
+		player_speed = 3
+	elif event.is_action_pressed('flashlight'):
+		if %flashlight.visible:
+			%flashlight.hide()
+		else:
+			%flashlight.show()
 	elif event.is_action_pressed("interact") and current_pickup:
 		_collect_current_pickup()
 
@@ -74,7 +85,7 @@ func _has_space_to_stand() -> bool:
 	return space.intersect_ray(params).is_empty()
 
 func _physics_process(delta: float) -> void:
-	var speed = SPEED * (0.6 if is_crouching else 1.0)
+	var speed = player_speed * (0.6 if is_crouching else 1.0)
 	var input_direction_2d = Input.get_vector("move_left","move_right","move_forward","move_back")
 	var input_direction_3d = Vector3(input_direction_2d.x, 0, input_direction_2d.y)
 	var direction = transform.basis * input_direction_3d
