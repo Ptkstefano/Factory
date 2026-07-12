@@ -65,7 +65,8 @@ func _physics_process(delta: float) -> void:
 		%AnimationTree.set("parameters/Chase/blend_position",horizontal_speed - 1)
 		navigation_agent.target_position = player.global_position
 		move_towards_destination(delta)
-		check_for_shot()
+		if detection_progress >= 99:
+			check_for_shot()
 		if detection_progress <= 1:
 			change_state(STATES.PATROLLING)
 	elif state == STATES.SHOOTING:
