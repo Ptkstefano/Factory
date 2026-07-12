@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 const SPEED = 5.5
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.06
@@ -15,6 +17,8 @@ var camera_base_y := STAND_CAM_Y
 var camera_target_y := STAND_CAM_Y
 var is_crouching := false
 
+@export var set_camera_as_active : bool = true
+
 @onready var col_shape: CollisionShape3D = $CollisionShape3D
 
 func _ready() -> void:
@@ -23,7 +27,8 @@ func _ready() -> void:
 	camera_target_y = camera_base_y
 	$ItemPickup.area_entered.connect(on_pickup_area_entered)
 	
-	%Camera3D.make_current()
+	if set_camera_as_active:
+		%Camera3D.make_current()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
