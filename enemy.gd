@@ -3,7 +3,7 @@ extends CharacterBody3D
 var patrol_speed: float = 2.0
 var acceleration: float = 2.0
 
-var run_speed : float = 3.5
+var run_speed : float = 4.5
 
 var wait_time_min: float = 0.5
 var wait_time_max: float = 2.0
@@ -300,7 +300,7 @@ func increase_detection_progress(delta: float) -> void:
 func check_for_shot():
 	if raycast.is_colliding():
 		if raycast.get_collider() is Player:
-			if global_position.distance_to(player.global_position) < 50:
+			if global_position.distance_to(player.global_position) < 25:
 				change_state(STATES.SHOOTING)
 
 func shot_ended():
