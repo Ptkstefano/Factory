@@ -112,16 +112,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.29628, 0.34658742, 32.575
 
 [node name="Pickup" parent="Pickups" unique_id=436470555 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7946515, 0.016869783, 38.389496)
-object_name = "Crowbar"
+id = 1
 
 [node name="Pickup2" parent="Pickups" unique_id=536549004 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9232302, 0.016869783, 38.389496)
 mesh = ExtResource("6_7mycd")
-object_name = "Tape"
+id = 2
 
 [node name="Pickup3" parent="Pickups" unique_id=1632438501 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9232302, 0.016869783, 35.266018)
 mesh = ExtResource("7_272bh")
-object_name = "Food"
+id = 3
 
 [editable path="Player"]
