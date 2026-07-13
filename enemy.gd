@@ -308,3 +308,7 @@ func shot_ended():
 
 func play_gunshot():
 	%Gunshot.play()
+	
+	%Flash.show()
+	await get_tree().create_timer(0.1).timeout
+	%Flash.hide()

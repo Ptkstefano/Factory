@@ -19,21 +19,24 @@ var camera_base_y := STAND_CAM_Y
 var camera_target_y := STAND_CAM_Y
 var is_crouching := false
 
-var current_pickup : Node3D = null
+var current_interactable : Node3D = null
 var inventory : Array[Ids.OBJECTS] = []
+
+var has_flashlight : bool = false
 
 @export var set_camera_as_active : bool = true
 
 @onready var col_shape: CollisionShape3D = $CollisionShape3D
-@onready var pickup_prompt: Label = $PickupPrompt
+@onready var hint_prompt: Label = $PickupPrompt
 @onready var inventory_box: HBoxContainer = $Inventory
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera_base_y = %Camera3D.position.y
 	camera_target_y = camera_base_y
-	$ItemPickup.area_entered.connect(_on_pickup_area_entered)
-	$ItemPickup.area_exited.connect(_on_pickup_area_exited)
+	$InteractArea.area_entered.connect(on_interact_area_entered)
+	$InteractArea.area_exited.connect(on_interact_area_exited)
+	%flashlight.hide()
 
 	if set_camera_as_active:
 		%Camera3D.make_current()
@@ -55,12 +58,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_released('sprint'):
 		player_speed = 3
 	elif event.is_action_pressed('flashlight'):
+		if !has_flashlight:
+			return
 		if %flashlight.visible:
 			%flashlight.hide()
 		else:
 			%flashlight.show()
-	elif event.is_action_pressed("interact") and current_pickup:
-		_collect_current_pickup()
+	elif event.is_action_pressed("interact") and current_interactable:
+		_interact_with_current_interactable()
 
 func _crouch() -> void:
 	is_crouching = true
@@ -113,28 +118,46 @@ func _update_headbob(delta: float) -> void:
 		bob_time = 0.0
 		%Camera3D.position.y = lerpf(%Camera3D.position.y, camera_base_y, delta * 10.0)
 
-func _on_pickup_area_entered(area: Area3D) -> void:
-	var pickup = area.get_parent()
-	if not pickup.has_method("pick_up") or pickup.picked_up:
-		return
-	current_pickup = pickup
-	pickup_prompt.text = "Press F to pickup %s" % Ids.get_object_name(pickup.id)
-	pickup_prompt.visible = true
+func on_interact_area_entered(area: Area3D) -> void:
+	var interactable = area.get_parent()
+	if interactable is Pickup:
+		current_interactable = interactable
+		hint_prompt.text = "Press F to pickup %s" % Ids.get_object_name(interactable.id)
+		hint_prompt.visible = true
+	if interactable is InteractableArea:
+		current_interactable = interactable
+		if interactable.id == Ids.INTERACTABLE_AREAS.FLASHLIGHT:
+			hint_prompt.text = "Press F to pickup flashlight"
+			hint_prompt.visible = true
 
-func _on_pickup_area_exited(area: Area3D) -> void:
-	var pickup = area.get_parent()
-	if pickup == current_pickup:
-		current_pickup = null
-		pickup_prompt.visible = false
+func on_interact_area_exited(area: Area3D) -> void:
+	#var pickup = area.get_parent()
+	hint_prompt.visible = false
+	current_interactable = null
+	#if pickup == current_interactable:
 
-func _collect_current_pickup() -> void:
-	var pickup = current_pickup
-	current_pickup = null
-	pickup_prompt.visible = false
+func _interact_with_current_interactable() -> void:
+	var interactable = current_interactable
+	current_interactable = null
+	hint_prompt.visible = false
+	print('INTERACTING')
+	
+	if interactable is Pickup:
+		inventory.append(interactable.id)
+		_add_inventory_slot(interactable)
+		interactable.pick_up()
+		
+	if interactable is InteractableArea:
+		if interactable.id == Ids.INTERACTABLE_AREAS.FLASHLIGHT:
+			has_flashlight = true
+			turn_on_flashlight()
+			interactable.activate()
 
-	pickup.pick_up()
-	inventory.append(pickup.id)
-	_add_inventory_slot(pickup)
+func turn_on_flashlight():
+	%flashlight.show()
+	
+func turn_off_flashlight():
+	%flashlight.hide()
 
 func _add_inventory_slot(pickup) -> void:
 	var slot := PanelContainer.new()

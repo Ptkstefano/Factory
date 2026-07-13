@@ -8,6 +8,7 @@ enum OBJECTS {
 	CROWBAR,
 	TAPE,
 	FOOD,
+	FLASHLIGHT,
 }
 
 const NAMES := {
@@ -15,6 +16,11 @@ const NAMES := {
 	OBJECTS.CROWBAR: "Crowbar",
 	OBJECTS.TAPE: "Tape",
 	OBJECTS.FOOD: "Food",
+	OBJECTS.FLASHLIGHT: "Flashlight",
+}
+
+enum INTERACTABLE_AREAS {
+	FLASHLIGHT
 }
 
 func get_object_name(id: OBJECTS) -> String:

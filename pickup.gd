@@ -1,5 +1,6 @@
 extends Node3D
 
+class_name Pickup
 
 const ICON_SIZE := 128
 
@@ -15,7 +16,8 @@ var mesh_instance : Node3D
 
 
 func _ready():
-	mesh_instance = mesh.instantiate()
+	if mesh_instance:
+		mesh_instance = mesh.instantiate()
 	add_child(mesh_instance)
 	_generate_icon()
 
