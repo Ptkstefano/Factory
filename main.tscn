@@ -191,7 +191,6 @@ omni_attenuation = 0.302
 
 [node name="EditorLight" type="DirectionalLight3D" parent="." unique_id=1607807308]
 transform = Transform3D(-0.85771304, -0.49148566, 0.15089831, 0.06723212, 0.18376014, 0.9806692, -0.5097139, 0.85127795, -0.12456988, 4.867775, 16.862469, -8.431232)
-visible = false
 editor_only = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2126033665]
