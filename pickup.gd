@@ -16,8 +16,7 @@ var mesh_instance : Node3D
 
 
 func _ready():
-	if mesh_instance:
-		mesh_instance = mesh.instantiate()
+	mesh_instance = mesh.instantiate()
 	add_child(mesh_instance)
 	_generate_icon()
 
