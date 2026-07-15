@@ -3177,6 +3177,7 @@ transform = Transform3D(2.0068586, 0, 0, 0, 1.3990262, 0, 0, 0, 1, 55.090763, 0.
 transform = Transform3D(0.046624277, 0, 0.9989125, 0, 1, 0, -0.9989125, 0, 0.046624277, 130.5891, -4.7683716e-07, 68.895485)
 
 [node name="Roof" type="Node3D" parent="." unique_id=1055245437]
+visible = false
 
 [node name="roof_mx_12" parent="Roof" unique_id=1085962079 instance=ExtResource("48_na3no")]
 transform = Transform3D(4.352599, 0, 0, 0, 1, 0, 0, 0, 10.358329, 137.3566, 2.53132, 40.211403)

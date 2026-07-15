@@ -16,8 +16,8 @@ var mesh_instance : Node3D
 
 
 func _ready():
-	mesh_instance = mesh.instantiate()
-	add_child(mesh_instance)
+	#mesh_instance = mesh.instantiate()
+	#add_child(mesh_instance)
 	_generate_icon()
 
 
@@ -25,9 +25,9 @@ func pick_up() -> void:
 	if picked_up:
 		return
 	picked_up = true
-	mesh_instance.queue_free()
 	area.set_deferred("monitoring", false)
 	area.set_deferred("monitorable", false)
+	queue_free()
 
 
 # Renders the pickup's 3D mesh into an offscreen viewport and bakes the
