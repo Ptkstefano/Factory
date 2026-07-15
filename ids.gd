@@ -20,7 +20,8 @@ const NAMES := {
 }
 
 enum INTERACTABLE_AREAS {
-	FLASHLIGHT
+	FLASHLIGHT,
+	DOOR,
 }
 
 func get_object_name(id: OBJECTS) -> String:
