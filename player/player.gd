@@ -139,10 +139,13 @@ func on_interact_area_entered(area: Area3D) -> void:
 		current_interactable = interactable
 		hint_prompt.text = "Press F to pickup %s" % Ids.get_object_name(interactable.id)
 		hint_prompt.visible = true
-	if interactable is InteractableArea:
+	if interactable is InteractableArea and not interactable.activated:
 		current_interactable = interactable
 		if interactable.id == Ids.INTERACTABLE_AREAS.FLASHLIGHT:
 			hint_prompt.text = "Press F to pickup flashlight"
+			hint_prompt.visible = true
+		elif interactable.id == Ids.INTERACTABLE_AREAS.DOOR:
+			hint_prompt.text = "Press F to open the door"
 			hint_prompt.visible = true
 
 func on_interact_area_exited(area: Area3D) -> void:
@@ -153,20 +156,28 @@ func on_interact_area_exited(area: Area3D) -> void:
 
 func _interact_with_current_interactable() -> void:
 	var interactable = current_interactable
+
+	if interactable is InteractableArea and not interactable.has_pre_requisites(inventory):
+		var missing_name = Ids.get_object_name(interactable.pre_requisites[0])
+		hint_prompt.text = "You need the %s. Go find it first!" % missing_name
+		hint_prompt.visible = true
+		return
+
 	current_interactable = null
 	hint_prompt.visible = false
 	print('INTERACTING')
-	
+
 	if interactable is Pickup:
 		inventory.append(interactable.id)
 		_add_inventory_slot(interactable)
 		interactable.pick_up()
-		
+
 	if interactable is InteractableArea:
 		if interactable.id == Ids.INTERACTABLE_AREAS.FLASHLIGHT:
 			has_flashlight = true
 			turn_on_flashlight()
-			interactable.activate()
+			inventory.append(Ids.OBJECTS.FLASHLIGHT)
+		interactable.activate()
 
 func turn_on_flashlight():
 	%flashlight.show()

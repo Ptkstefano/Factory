@@ -20,7 +20,8 @@ const NAMES := {
 }
 
 enum INTERACTABLE_AREAS {
-	FLASHLIGHT
+	FLASHLIGHT,
+	DOOR,
 }
 
 enum SOUND_AREAS {
