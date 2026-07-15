@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://du2ru4okvlc85" path="res://PizzaDoggy2/Textures/wall_rg_1.png" id="4_fj6e6"]
 [ext_resource type="PackedScene" uid="uid://iw6lycbmhrc1" path="res://PizzaDoggy/Furniture/chair_mp_4_2.glb" id="5_f2txt"]
 [ext_resource type="PackedScene" uid="uid://bqesgfk1oikn7" path="res://PizzaDoggy2/GLB (recommended)/Structures/water_tower_hm_1.glb" id="6_1ainy"]
-[ext_resource type="Texture2D" uid="uid://2yr5x28kxlc6" path="res://PizzaDoggy/Modular Structures/arc_2_wall_1_wall_3.png" id="6_qh1jm"]
+[ext_resource type="Texture2D" uid="uid://grq8e5svdtst" path="res://PizzaDoggy/Modular Structures/arc_2_wall_1_wall_3.png" id="6_qh1jm"]
 [ext_resource type="PackedScene" uid="uid://bl02phl61ovhp" path="res://props/bed frame.tscn" id="10_0k1o5"]
 [ext_resource type="PackedScene" uid="uid://1eqbevtu1mbv" path="res://props/tank_system_mx_12.tscn" id="11_4wtct"]
 [ext_resource type="Texture2D" uid="uid://c4wkfpwhkcs0t" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/storage_tank_mx_1_metal_hr_6_1.png" id="12_h44gt"]

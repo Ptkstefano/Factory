@@ -11,6 +11,13 @@
 [ext_resource type="Script" uid="uid://cxb3v1i5s1wyv" path="res://InteractableArea.gd" id="8_efxa6"]
 [ext_resource type="Texture2D" uid="uid://b2fd78xgpbek3" path="res://PizzaDoggy/Items & Weapons/flashlight_mp_1_flashlight_1_emission.png" id="9_efxa6"]
 [ext_resource type="Texture2D" uid="uid://bar6614m8i5kq" path="res://PizzaDoggy/Lighting/ceiling_lamp_mp_1_1_fake_light_1_fake_light_mp_1.png" id="10_dg77c"]
+[ext_resource type="Script" uid="uid://clrwtcv5r17n1" path="res://sound_area.gd" id="12_dg77c"]
+[ext_resource type="AudioStream" uid="uid://din0o1pqq145n" path="res://sfx/room_evil.ogg" id="13_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://c7m83hl3apqg1" path="res://sfx/room_electrical.ogg" id="14_w48qg"]
+[ext_resource type="AudioStream" uid="uid://hy34s7bqsgl7" path="res://sfx/room_roomtone.ogg" id="14_yaehf"]
+[ext_resource type="AudioStream" uid="uid://ctls218gnluy1" path="res://sfx/room_exterior.ogg" id="15_vivmo"]
+[ext_resource type="AudioStream" uid="uid://cs1imqpj8xpm2" path="res://sfx/room_distant_traffic.ogg" id="16_2cqfq"]
+[ext_resource type="AudioStream" uid="uid://cq8ybt3cjmpfs" path="res://sfx/room_computer.ogg" id="16_074og"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -276,5 +283,100 @@ transform = Transform3D(0.030204022, 0, -0.9995438, 0, 1, 0, 0.9995438, 0, 0.030
 shadow_enabled = true
 spot_range = 32.233
 spot_angle = 38.11
+
+[node name="SoundAreas" type="Node3D" parent="." unique_id=1770707579]
+
+[node name="Outside" type="Area3D" parent="SoundAreas" unique_id=1699219107]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("12_dg77c")
+id = 1
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="SoundAreas/Outside" unique_id=453733451]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+depth = -7.285
+polygon = PackedVector2Array(24.17623, -14.326381, 24.261665, -24.539974, -24.494516, -24.61387, -24.523169, 31.222301, 17.838686, 31.204453, 17.781612, 8.002191, 11.148413, 7.9904275, 11.369143, 1.174796, 24.119158, 1.0609663)
+
+[node name="SoundEmitters" type="Node3D" parent="." unique_id=248359125]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundEmitters" unique_id=948080445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.867218, 0, 37.999283)
+stream = ExtResource("13_ycdy4")
+volume_db = -27.75
+unit_size = 38.39
+max_db = -15.266
+autoplay = true
+panning_strength = 0.2
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="SoundEmitters" unique_id=1523754108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.867218, 0, -3.076765)
+stream = ExtResource("14_yaehf")
+volume_db = -27.75
+unit_size = 38.39
+max_db = -15.266
+autoplay = true
+panning_strength = 0.2
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="SoundEmitters" unique_id=1275405606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.416169, 0, -35.71779)
+stream = ExtResource("14_w48qg")
+volume_db = -27.75
+unit_size = 38.39
+max_db = -15.266
+autoplay = true
+panning_strength = 0.2
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="SoundEmitters" unique_id=1844652427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.595646, 0, -25.673012)
+stream = ExtResource("16_074og")
+volume_db = -27.75
+unit_size = 38.39
+max_db = -15.266
+autoplay = true
+panning_strength = 0.2
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="SoundEmitters" unique_id=1976769399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.90869, 0, 30.216915)
+stream = ExtResource("14_w48qg")
+volume_db = 5.314
+unit_size = 51.66
+max_db = -3.864
+autoplay = true
+panning_strength = 0.2
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="SoundEmitters" unique_id=1218430001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.597703, 0, 5.6237373)
+stream = ExtResource("15_vivmo")
+volume_db = -15.941
+unit_size = 41.71
+max_db = -9.62
+autoplay = true
+panning_strength = 0.2
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="SoundEmitters" unique_id=1006418669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.309586, 0, -67.62532)
+stream = ExtResource("16_2cqfq")
+volume_db = -15.941
+unit_size = 41.71
+max_db = -9.62
+autoplay = true
+panning_strength = 0.2
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="SoundEmitters" unique_id=1548668828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.21527, 0, -11.344688)
+stream = ExtResource("16_2cqfq")
+volume_db = -15.941
+unit_size = 41.71
+max_db = -9.62
+autoplay = true
+panning_strength = 0.2
+parameters/looping = true
 
 [editable path="Player"]

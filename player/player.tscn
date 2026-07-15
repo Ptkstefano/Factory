@@ -5,6 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://b2fd78xgpbek3" path="res://PizzaDoggy/Items & Weapons/flashlight_mp_1_flashlight_1_emission.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://cv0ccp168jyp8" path="res://crosshair002.png" id="4_crosshair"]
 [ext_resource type="Texture2D" uid="uid://bar6614m8i5kq" path="res://PizzaDoggy/Lighting/ceiling_lamp_mp_1_1_fake_light_1_fake_light_mp_1.png" id="4_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://cs26wpkrw00dp" path="res://sfx/player_fs_concrete_1.ogg" id="6_8t03j"]
+[ext_resource type="AudioStream" uid="uid://ns7eegj7yo8w" path="res://sfx/player_fs_concrete_2.ogg" id="7_2ieo8"]
+[ext_resource type="AudioStream" uid="uid://j7uv0uasyrcn" path="res://sfx/player_fs_concrete_3.ogg" id="8_ebec5"]
+[ext_resource type="AudioStream" uid="uid://bw154kku3qhsu" path="res://sfx/player_fs_concrete_4.ogg" id="9_yllr7"]
+[ext_resource type="AudioStream" uid="uid://pa5rv6aveddm" path="res://sfx/player_fs_concrete_5.ogg" id="10_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://y7uqh7u7w7lm" path="res://sfx/player_run_fs_concrete_1.ogg" id="11_wodsf"]
+[ext_resource type="AudioStream" uid="uid://btp5086nwcjli" path="res://sfx/player_run_fs_concrete_2.ogg" id="12_32hag"]
+[ext_resource type="AudioStream" uid="uid://basgb3po1o86v" path="res://sfx/player_run_fs_concrete_3.ogg" id="13_tqiix"]
+[ext_resource type="AudioStream" uid="uid://bja3uywhs7gkp" path="res://sfx/player_run_fs_concrete_4.ogg" id="14_e7oew"]
+[ext_resource type="AudioStream" uid="uid://dej5ktt4t7bya" path="res://sfx/player_run_fs_concrete_5.ogg" id="15_c35mf"]
+[ext_resource type="AudioStream" uid="uid://c30oo5s2mlt0n" path="res://sfx/player_fs_grass_1.ogg" id="16_65viv"]
+[ext_resource type="AudioStream" uid="uid://dpymkc53vr147" path="res://sfx/player_fs_grass_2.ogg" id="17_x7c3f"]
+[ext_resource type="AudioStream" uid="uid://blhckaxcw16fx" path="res://sfx/player_fs_grass_3.ogg" id="18_bjvpn"]
+[ext_resource type="AudioStream" uid="uid://do1be4qoroui1" path="res://sfx/player_fs_grass_4.ogg" id="19_s7qer"]
+[ext_resource type="AudioStream" uid="uid://c6fs5wt4bm22y" path="res://sfx/player_fs_grass_5.ogg" id="20_g4c7l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 
@@ -97,6 +112,38 @@ shadow_mesh = SubResource("ArrayMesh_g6k8r")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yw30f"]
 size = Vector3(1.520752, 1.1855469, 1.6205444)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wodsf"]
+random_pitch = 1.0210121
+random_volume_offset_db = 3.6
+streams_count = 5
+stream_0/stream = ExtResource("6_8t03j")
+stream_1/stream = ExtResource("7_2ieo8")
+stream_2/stream = ExtResource("8_ebec5")
+stream_3/stream = ExtResource("9_yllr7")
+stream_4/stream = ExtResource("10_kb6p2")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_knn7v"]
+random_pitch = 1.0210121
+random_volume_offset_db = 3.6
+streams_count = 5
+stream_0/stream = ExtResource("11_wodsf")
+stream_1/stream = ExtResource("12_32hag")
+stream_2/stream = ExtResource("13_tqiix")
+stream_3/stream = ExtResource("14_e7oew")
+stream_4/stream = ExtResource("15_c35mf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_65viv"]
+random_pitch = 1.0210121
+random_volume_offset_db = 3.6
+streams_count = 5
+stream_0/stream = ExtResource("16_65viv")
+stream_1/stream = ExtResource("17_x7c3f")
+stream_2/stream = ExtResource("18_bjvpn")
+stream_3/stream = ExtResource("19_s7qer")
+stream_4/stream = ExtResource("20_g4c7l")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wodsf"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1948307631 groups=["Player"]]
 script = ExtResource("2_script")
@@ -198,3 +245,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07116699, 0.82072437, -0.8
 shape = SubResource("BoxShape3D_yw30f")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1452056189]
+
+[node name="FootstepTimer" type="Timer" parent="." unique_id=1156363307]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[node name="Footstep_concrete" type="AudioStreamPlayer3D" parent="." unique_id=237553681]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_wodsf")
+volume_db = -20.351
+
+[node name="Footstep_run_concrete" type="AudioStreamPlayer3D" parent="." unique_id=1932409879]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_knn7v")
+volume_db = -20.351
+
+[node name="Footstep_grass" type="AudioStreamPlayer3D" parent="." unique_id=2089986292]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_65viv")
+volume_db = -30.0
+
+[node name="SoundArea" type="Area3D" parent="." unique_id=453992011]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoundArea" unique_id=2032915778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1620989, 0)
+shape = SubResource("SphereShape3D_wodsf")

@@ -37,6 +37,8 @@ var state : STATES = STATES.IDLE
 
 var walk_blend = 0
 
+var sound_area : Ids.SOUND_AREAS = Ids.SOUND_AREAS.INSIDE
+
 func _ready() -> void:
 	randomize()
 
@@ -50,6 +52,10 @@ func _ready() -> void:
 	change_state(STATES.IDLE)
 
 	player = get_tree().get_first_node_in_group('Player')
+	
+	%SoundArea.area_entered.connect(on_sound_area_entered)
+	%SoundArea.area_exited.connect(on_sound_area_exited)
+	
 
 func _physics_process(delta: float) -> void:
 	
@@ -317,9 +323,15 @@ func play_gunshot():
 
 func play_footstep():
 	if state == STATES.PATROLLING:
-		%Footstep_Concrete.play()
+		if sound_area == Ids.SOUND_AREAS.INSIDE:
+			%Footstep_Concrete.play()
+		elif sound_area == Ids.SOUND_AREAS.COURTYARD:
+			%Footstep_Grass.play()
 	elif state == STATES.CHASING:
-		%FootstepRun_Concrete.play()
+		if sound_area == Ids.SOUND_AREAS.INSIDE:
+			%FootstepRun_Concrete.play()
+		elif sound_area == Ids.SOUND_AREAS.COURTYARD:
+			%FootstepRun_Grass.play()
 
 func set_audio_ducking(has_line_of_sight):
 	var bus_index = AudioServer.get_bus_index("Enemy")
@@ -339,3 +351,11 @@ func set_audio_ducking(has_line_of_sight):
 			0.1
 		)
 		AudioServer.set_bus_volume_db(bus_index, new_volume)
+
+func on_sound_area_entered(area):
+	if area is SoundArea:
+		sound_area = area.id
+
+func on_sound_area_exited(area):
+	if area is SoundArea:
+		sound_area = Ids.SOUND_AREAS.INSIDE
