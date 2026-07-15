@@ -26,6 +26,12 @@ func activate():
 		%CrowbarDoorCollision.queue_free()
 		Signals.bake_navmesh.emit()
 		call_deferred('alert_enemy')
+	if id == Ids.INTERACTABLE_AREAS.KEY_DOOR:
+		%KeyDoorAnimation.play('open_door')
+		await %KeyDoorAnimation.animation_finished
+		%KeyDoorCollision.queue_free()
+		## Signals.bake_navmesh.emit()
+		## call_deferred('alert_enemy')
 		
 
 func alert_enemy():
