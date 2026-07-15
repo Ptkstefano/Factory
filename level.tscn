@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://du2ru4okvlc85" path="res://PizzaDoggy2/Textures/wall_rg_1.png" id="4_fj6e6"]
 [ext_resource type="PackedScene" uid="uid://iw6lycbmhrc1" path="res://PizzaDoggy/Furniture/chair_mp_4_2.glb" id="5_f2txt"]
 [ext_resource type="PackedScene" uid="uid://bqesgfk1oikn7" path="res://PizzaDoggy2/GLB (recommended)/Structures/water_tower_hm_1.glb" id="6_1ainy"]
-[ext_resource type="Texture2D" uid="uid://grq8e5svdtst" path="res://PizzaDoggy/Modular Structures/arc_2_wall_1_wall_3.png" id="6_qh1jm"]
+[ext_resource type="Texture2D" uid="uid://2yr5x28kxlc6" path="res://PizzaDoggy/Modular Structures/arc_2_wall_1_wall_3.png" id="6_qh1jm"]
 [ext_resource type="PackedScene" uid="uid://bl02phl61ovhp" path="res://props/bed frame.tscn" id="10_0k1o5"]
 [ext_resource type="PackedScene" uid="uid://1eqbevtu1mbv" path="res://props/tank_system_mx_12.tscn" id="11_4wtct"]
 [ext_resource type="Texture2D" uid="uid://c4wkfpwhkcs0t" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/storage_tank_mx_1_metal_hr_6_1.png" id="12_h44gt"]
@@ -47,12 +47,17 @@
 [ext_resource type="PackedScene" uid="uid://c58nuytcbicvc" path="res://PizzaDoggy2/GLB (recommended)/Props/shelf_mx_6_2.glb" id="45_td4uw"]
 [ext_resource type="PackedScene" uid="uid://d1ccc7xslaesi" path="res://PizzaDoggy/Modular Structures/wall_2_2.glb" id="46_wp8k7"]
 [ext_resource type="PackedScene" uid="uid://q0uyeiflyker" path="res://PizzaDoggy/Modular Structures/side_doorway_2_1.glb" id="47_na3no"]
+[ext_resource type="PackedScene" uid="uid://dtqic1gqnbutb" path="res://PizzaDoggy/Large Props/wooden_crate_4.glb" id="48_n4px5"]
 [ext_resource type="PackedScene" uid="uid://c5eisr4bloulh" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/roof_mx_1.glb" id="48_na3no"]
 [ext_resource type="PackedScene" uid="uid://joasiccnkb8o" path="res://PizzaDoggy/Lighting/lamp_2_on.glb" id="49_0qfi3"]
 [ext_resource type="PackedScene" uid="uid://bsnxbk4aor7pa" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/floor_ceiling_hr_3.glb" id="49_4wtct"]
 [ext_resource type="PackedScene" uid="uid://cdtmj8s73y3bi" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/roof_small_hr_1.glb" id="49_07udg"]
+[ext_resource type="PackedScene" uid="uid://cnhv27lkcgfh6" path="res://PizzaDoggy/Large Props/wooden_crate_3.glb" id="49_f3hnb"]
 [ext_resource type="PackedScene" uid="uid://chh8yu1km7b3f" path="res://PizzaDoggy2/GLB (recommended)/Doors & Gates/door_hr_8.glb" id="50_03k3n"]
 [ext_resource type="PackedScene" uid="uid://qqp16jedxhju" path="res://PizzaDoggy/Modular Structures/floor_ceiling_3.glb" id="50_4wtct"]
+[ext_resource type="PackedScene" uid="uid://bh52r0eivlvs4" path="res://PizzaDoggy/Large Props/wooden_crate_2.glb" id="50_s7ylq"]
+[ext_resource type="PackedScene" uid="uid://b1lh45781kfyp" path="res://PizzaDoggy/Large Props/pipe_1_cross.glb" id="51_gpid7"]
+[ext_resource type="PackedScene" uid="uid://b5qgtdbpvaf45" path="res://PizzaDoggy/Large Props/pipe_1_short.glb" id="52_rsq42"]
 [ext_resource type="Texture2D" uid="uid://rgfxd6qy2yb" path="res://PizzaDoggy2/GLB (recommended)/Props/bench_mx_1_planks_hr_2.png" id="55_h44gt"]
 [ext_resource type="PackedScene" uid="uid://doew8rn61ifng" path="res://PizzaDoggy2/GLB (recommended)/Props/glass_bottle_mx_3.glb" id="56_v5bkr"]
 [ext_resource type="PackedScene" uid="uid://6sk5x85u2of5" path="res://PizzaDoggy2/GLB (recommended)/Props/glass_bottle_mx_2.glb" id="57_qr3w1"]
@@ -85,6 +90,14 @@
 [ext_resource type="Texture2D" uid="uid://rcq31adhpgu5" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/concrete_pipe_hm_1_middle_concrete_hr_1.png" id="81_la0c1"]
 [ext_resource type="PackedScene" uid="uid://dgeoghpbeee0i" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/concrete_pipe_hm_1_end_bars_1.glb" id="82_ofs7l"]
 [ext_resource type="PackedScene" uid="uid://w0dwgvqpbf48" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/pipe_bx_1.glb" id="83_ofs7l"]
+[ext_resource type="PackedScene" uid="uid://eab7r6gmxru3" path="res://PizzaDoggy/Large Props/pipe_1.glb" id="91_oiuvo"]
+[ext_resource type="PackedScene" uid="uid://ca15t08vgcp8o" path="res://PizzaDoggy/Large Props/pipe_1_corner.glb" id="92_lupeo"]
+[ext_resource type="PackedScene" uid="uid://bohirkfxb53ud" path="res://PizzaDoggy/Small Props/clock_2.glb" id="93_5ta2p"]
+[ext_resource type="PackedScene" uid="uid://b5mnniqc1lmya" path="res://PizzaDoggy/Small Props/plate_mp_1.glb" id="94_yegu8"]
+[ext_resource type="PackedScene" uid="uid://dx3f63b5s5bes" path="res://PizzaDoggy/Small Props/spoon_mp_1.glb" id="95_wpw4j"]
+[ext_resource type="PackedScene" uid="uid://dmuqfo41g0f02" path="res://PizzaDoggy/Small Props/tin_can_mp_1_rusty.glb" id="96_2hcxj"]
+[ext_resource type="PackedScene" uid="uid://dexqtyq7e7216" path="res://PizzaDoggy/Small Props/cig_2.glb" id="97_v55xy"]
+[ext_resource type="PackedScene" uid="uid://c85wxfia6pgn6" path="res://PizzaDoggy2/GLB (recommended)/Props/speaker_mx_1_2.glb" id="98_jnlqa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aoqsc"]
 albedo_texture = ExtResource("1_yjxuc")
@@ -1716,6 +1729,12 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.828232, 1.9721069, 0)
 shape = SubResource("BoxShape3D_84hvi")
 
+[node name="shelf_mx_6_22" parent="Walls" unique_id=661090838 instance=ExtResource("45_td4uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.57883, 0.016870022, 69.33829)
+
+[node name="shelf_mx_6_23" parent="Walls" unique_id=1847703678 instance=ExtResource("45_td4uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.25821, 0.016870022, 69.33829)
+
 [node name="Props" type="Node3D" parent="." unique_id=852108018 groups=["Navigation"]]
 
 [node name="bench_mx_12" type="StaticBody3D" parent="Props" unique_id=1301673951]
@@ -2936,6 +2955,36 @@ shape = SubResource("BoxShape3D_oif8o")
 [node name="metal_barrel_mp_13" parent="Props" unique_id=690370486 instance=ExtResource("32_h44gt")]
 transform = Transform3D(0.49071598, 0, 0.8713196, 0, 1, 0, -0.8713196, 0, 0.49071598, 76.686905, 0.016869068, 52.33826)
 
+[node name="wooden_crate_42" parent="Props" unique_id=1830205729 instance=ExtResource("48_n4px5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.815, 2.2031133, 69.029)
+
+[node name="wooden_crate_32" parent="Props" unique_id=1483886289 instance=ExtResource("49_f3hnb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.22221, 0.016869826, 67.37066)
+
+[node name="wooden_crate_33" parent="Props" unique_id=1347924985 instance=ExtResource("49_f3hnb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.766685, 0.016869826, 69.05387)
+
+[node name="wooden_crate_22" parent="Props" unique_id=1532645322 instance=ExtResource("50_s7ylq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.9963, 0.016869849, 69.07787)
+
+[node name="wooden_crate_23" parent="Props" unique_id=1091508350 instance=ExtResource("50_s7ylq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116.899216, 0.016869849, 69.07787)
+
+[node name="wooden_crate_34" parent="Props" unique_id=1452515764 instance=ExtResource("49_f3hnb")]
+transform = Transform3D(-0.999638, 0, -0.02690324, 0, 1, 0, 0.02690324, 0, -0.999638, 118.00813, 1.1116797, 69.055725)
+
+[node name="wooden_crate_24" parent="Props" unique_id=1734573334 instance=ExtResource("50_s7ylq")]
+transform = Transform3D(-0.999638, 0, -0.02690324, 0, 1, 0, 0.02690324, 0, -0.999638, 115.77868, 1.1116798, 69.09172)
+
+[node name="wooden_crate_25" parent="Props" unique_id=863134089 instance=ExtResource("50_s7ylq")]
+transform = Transform3D(-0.999638, 0, -0.02690324, 0, 1, 0, 0.02690324, 0, -0.999638, 116.87537, 1.1116798, 69.0622)
+
+[node name="pipe_1_cross2" parent="Props" unique_id=1800386212 instance=ExtResource("51_gpid7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.01226, 2.694391, 61.16)
+
+[node name="pipe_1_short2" parent="Props" unique_id=992117570 instance=ExtResource("52_rsq42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.00343, 0.8280519, 61.13251)
+
 [node name="Lights" type="Node3D" parent="." unique_id=1889616084]
 
 [node name="AreaLight3D2" type="OmniLight3D" parent="Lights" unique_id=807247244]
@@ -3836,3 +3885,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.24688, 4.294692, 73.86549)
 
 [node name="pipe_bx_35" parent="." unique_id=2040116425 instance=ExtResource("83_ofs7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.24688, 4.294692, 69.84147)
+
+[node name="pipe_1_short2" parent="." unique_id=512219236 instance=ExtResource("52_rsq42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118.99293, -0.37891588, 61.108814)
+
+[node name="pipe_12" parent="." unique_id=865711629 instance=ExtResource("91_oiuvo")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 119.67199, 2.6860638, 61.16)
+
+[node name="pipe_1_short3" parent="." unique_id=1112599803 instance=ExtResource("52_rsq42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.000946, 3.3567348, 61.16)
+
+[node name="pipe_13" parent="." unique_id=1008339842 instance=ExtResource("91_oiuvo")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 122.66501, 2.6897645, 61.16)
+
+[node name="pipe_14" parent="." unique_id=926535006 instance=ExtResource("91_oiuvo")]
+transform = Transform3D(0.005305818, -0.99998593, 0, 0.99998593, 0.005305818, 0, 0, 0, 1, 118.333115, 2.6986334, 61.16316)
+
+[node name="pipe_15" parent="." unique_id=105611541 instance=ExtResource("91_oiuvo")]
+transform = Transform3D(0.005305818, -0.99998593, 0, 0.99998593, 0.005305818, 0, 0, 0, 1, 115.34331, 2.6986334, 61.16316)
+
+[node name="pipe_16" parent="." unique_id=815123641 instance=ExtResource("91_oiuvo")]
+transform = Transform3D(0.005305818, -0.99998593, 0, 0.99998593, 0.005305818, 0, 0, 0, 1, 112.36591, 2.7144625, 61.16316)
+
+[node name="pipe_17" parent="." unique_id=1761464027 instance=ExtResource("91_oiuvo")]
+transform = Transform3D(0.005305818, -0.99998593, 0, 0.99998593, 0.005305818, 0, 0, 0, 1, 109.37611, 2.7144625, 61.16316)
+
+[node name="pipe_1_corner2" parent="." unique_id=626919551 instance=ExtResource("92_lupeo")]
+transform = Transform3D(1.1924881e-08, -1, 0, 1, 1.1924881e-08, 0, 0, 0, 1, 106.35953, 2.7280622, 61.16)
+
+[node name="pipe_1_short4" parent="." unique_id=1112995418 instance=ExtResource("52_rsq42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.05566, 3.0357423, 61.16)
+
+[node name="pipe_1_corner3" parent="." unique_id=605749976 instance=ExtResource("92_lupeo")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 106.054825, 4.171173, 61.16)
+
+[node name="clock_22" parent="." unique_id=722576421 instance=ExtResource("93_5ta2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.776924, 1.7268702, 61.051)
+
+[node name="plate_mp_12" parent="." unique_id=2065719502 instance=ExtResource("94_yegu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.99786, 1.1080352, 67.11215)
+
+[node name="spoon_mp_12" parent="." unique_id=750657831 instance=ExtResource("95_wpw4j")]
+transform = Transform3D(1, 0, 0, 0, 0.9823067, 0.18727931, 0, -0.18727931, 0.9823067, 115.015594, 1.1320401, 67.242805)
+
+[node name="tin_can_mp_1_rusty2" parent="." unique_id=810384642 instance=ExtResource("96_2hcxj")]
+transform = Transform3D(0.009723712, 0.9592541, -0.28237736, 0.99897915, -0.021776851, -0.039577395, -0.044114076, -0.2817043, -0.9584868, 115.084, 1.144889, 67.5251)
+
+[node name="cig_22" parent="." unique_id=1939759139 instance=ExtResource("97_v55xy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.03137, 1.1220807, 67.03599)
+
+[node name="speaker_mx_1_22" parent="." unique_id=569384798 instance=ExtResource("98_jnlqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.41268, 3.558649, 61.030323)
