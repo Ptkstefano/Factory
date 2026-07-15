@@ -4,10 +4,15 @@ class_name InteractableArea
 
 
 @export var id : Ids.INTERACTABLE_AREAS
+@export var pre_requisites : Array[Ids.OBJECTS] = []
 
 var activated : bool = false
 
-var pre_requisites : Array[Ids.OBJECTS] = []
+func has_pre_requisites(inventory: Array[Ids.OBJECTS]) -> bool:
+	for pre_requisite in pre_requisites:
+		if not inventory.has(pre_requisite):
+			return false
+	return true
 
 func activate():
 	if activated:
