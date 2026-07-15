@@ -120,6 +120,7 @@ func update_detection_progress(delta):
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
 		if collider is Player:
+			set_audio_ducking(true)
 			var direction_to_player := global_position.direction_to(player.global_position)
 			var enemy_forward := -global_transform.basis.z.normalized()
 			if enemy_forward.dot(direction_to_player) < 0.0:
@@ -131,6 +132,7 @@ func update_detection_progress(delta):
 				raycast.debug_shape_custom_color = Color.RED
 		else:
 			#print(collider)
+			set_audio_ducking(false)
 			detection_progress -= delta * 10
 			raycast.debug_shape_custom_color = Color.BLUE
 
@@ -312,3 +314,28 @@ func play_gunshot():
 	%Flash.show()
 	await get_tree().create_timer(0.1).timeout
 	%Flash.hide()
+
+func play_footstep():
+	if state == STATES.PATROLLING:
+		%Footstep_Concrete.play()
+	elif state == STATES.CHASING:
+		%FootstepRun_Concrete.play()
+
+func set_audio_ducking(has_line_of_sight):
+	var bus_index = AudioServer.get_bus_index("Enemy")
+
+	var current_volume := AudioServer.get_bus_volume_db(bus_index)
+	if has_line_of_sight:
+		var new_volume := lerpf(
+			current_volume,
+			0,
+			0.1
+		)
+		AudioServer.set_bus_volume_db(bus_index, new_volume)
+	else:
+		var new_volume := lerpf(
+			current_volume,
+			-10,
+			0.1
+		)
+		AudioServer.set_bus_volume_db(bus_index, new_volume)
