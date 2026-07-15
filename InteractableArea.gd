@@ -20,3 +20,13 @@ func activate():
 	activated = true
 	if id == Ids.INTERACTABLE_AREAS.FLASHLIGHT:
 		queue_free()
+	if id == Ids.INTERACTABLE_AREAS.CROWBAR_DOOR:
+		%CrowbarDoorAnimation.play('fall_down')
+		await %CrowbarDoorAnimation.animation_finished
+		%CrowbarDoorCollision.queue_free()
+		Signals.bake_navmesh.emit()
+		call_deferred('alert_enemy')
+		
+
+func alert_enemy():
+	Signals.alert_enemy.emit(global_position)

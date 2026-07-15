@@ -144,8 +144,8 @@ func on_interact_area_entered(area: Area3D) -> void:
 		if interactable.id == Ids.INTERACTABLE_AREAS.FLASHLIGHT:
 			hint_prompt.text = "Press F to pickup flashlight"
 			hint_prompt.visible = true
-		elif interactable.id == Ids.INTERACTABLE_AREAS.DOOR:
-			hint_prompt.text = "Press F to open the door"
+		elif interactable.id == Ids.INTERACTABLE_AREAS.CROWBAR_DOOR:
+			hint_prompt.text = "Press F to break open the door"
 			hint_prompt.visible = true
 
 func on_interact_area_exited(area: Area3D) -> void:
