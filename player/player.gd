@@ -3,7 +3,7 @@ extends CharacterBody3D
 class_name Player
 
 const SPEED = 3.0
-const BOB_FREQ = 2.0
+var BOB_FREQ = 2.0
 const BOB_AMP = 0.06
 
 var player_speed = 3.0
@@ -30,6 +30,8 @@ var has_flashlight : bool = false
 @onready var hint_prompt: Label = $PickupPrompt
 @onready var inventory_box: HBoxContainer = $Inventory
 
+var sound_area : Ids.SOUND_AREAS = Ids.SOUND_AREAS.INSIDE
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera_base_y = %Camera3D.position.y
@@ -37,7 +39,10 @@ func _ready() -> void:
 	$InteractArea.area_entered.connect(on_interact_area_entered)
 	$InteractArea.area_exited.connect(on_interact_area_exited)
 	%flashlight.hide()
-
+	%FootstepTimer.timeout.connect(play_footstep)
+	%SoundArea.area_entered.connect(on_sound_area_entered)
+	%SoundArea.area_exited.connect(on_sound_area_exited)
+	
 	if set_camera_as_active:
 		%Camera3D.make_current()
 
@@ -69,6 +74,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _crouch() -> void:
 	is_crouching = true
+	%FootstepTimer.wait_time = 1
+	BOB_FREQ = 1.0
 	camera_target_y = CROUCH_CAM_Y
 	col_shape.shape.height = CROUCH_HEIGHT
 	col_shape.position.y = CROUCH_HEIGHT / 2.0
@@ -76,6 +83,8 @@ func _crouch() -> void:
 func _try_stand() -> void:
 	if _has_space_to_stand():
 		is_crouching = false
+		%FootstepTimer.wait_time = 0.5
+		BOB_FREQ = 2.0
 		camera_target_y = STAND_CAM_Y
 		col_shape.shape.height = STAND_HEIGHT
 		col_shape.position.y = STAND_HEIGHT / 2.0
@@ -104,6 +113,12 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("jump") and velocity.y > 0:
 		velocity.y = 0
 
+	if Vector2(velocity.x, velocity.z).length() > 0.1:
+		if %FootstepTimer.is_stopped():
+			%FootstepTimer.start()
+	else:
+		%FootstepTimer.stop()
+		
 	move_and_slide()
 	_update_headbob(delta)
 
@@ -190,3 +205,20 @@ func _add_inventory_slot(pickup) -> void:
 		slot.add_child(label)
 
 	inventory_box.add_child(slot)
+
+func play_footstep():
+	if sound_area == Ids.SOUND_AREAS.INSIDE:
+		if Vector2(velocity.x, velocity.z).length() < 4.0:
+			%Footstep_concrete.play()
+		else:
+			%Footstep_run_concrete.play()
+	else:
+		%Footstep_grass.play()
+		
+func on_sound_area_entered(area):
+	if area is SoundArea:
+		sound_area = area.id
+
+func on_sound_area_exited(area):
+	if area is SoundArea:
+		sound_area = Ids.SOUND_AREAS.INSIDE

@@ -82,6 +82,10 @@ interact={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_3="SoundArea"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

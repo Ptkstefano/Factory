@@ -24,5 +24,11 @@ enum INTERACTABLE_AREAS {
 	DOOR,
 }
 
+enum SOUND_AREAS {
+	INSIDE,
+	COURTYARD,
+	GARAGE,
+}
+
 func get_object_name(id: OBJECTS) -> String:
 	return NAMES.get(id, "Item")
