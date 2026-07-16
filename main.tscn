@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cieyjags5j622" path="res://PizzaDoggy2/GLB (recommended)/Doors & Gates/door_hr_8_plastic_mx_2.png" id="10_ryguw"]
 [ext_resource type="Script" uid="uid://clrwtcv5r17n1" path="res://sound_area.gd" id="12_dg77c"]
 [ext_resource type="AudioStream" uid="uid://din0o1pqq145n" path="res://sfx/room_evil.ogg" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://c2tdy1r4we0gn" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/machinery_mx_1.glb" id="14_0odxb"]
 [ext_resource type="PackedScene" uid="uid://gwfsi01ldvw" path="res://PizzaDoggy2/GLB (recommended)/Doors & Gates/door_hr_6.glb" id="14_1u8w0"]
 [ext_resource type="AudioStream" uid="uid://c7m83hl3apqg1" path="res://sfx/room_electrical.ogg" id="14_w48qg"]
 [ext_resource type="AudioStream" uid="uid://hy34s7bqsgl7" path="res://sfx/room_roomtone.ogg" id="14_yaehf"]
@@ -146,7 +147,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0eqo6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door_body"]
-size = Vector3(1.6166992, 2.1000001, 0.38494822)
+size = Vector3(2.737915, 2.1000001, 0.99760425)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door"]
 size = Vector3(1.1958008, 0.5441246, 1.614624)
@@ -480,7 +481,7 @@ spot_attenuation = 1.37
 spot_angle = 24.34
 spot_angle_attenuation = 1.3660408
 
-[node name="OmniLight3D" parent="Player" index="6" unique_id=1452056189]
+[node name="OmniLight3D" parent="Player" index="8" unique_id=1452056189]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3211598, 0)
 light_energy = 0.02
 light_specular = 0.0
@@ -589,6 +590,30 @@ shape = SubResource("BoxShape3D_door")
 [node name="CrowbarDoorAnimation" type="AnimationPlayer" parent="InteractableAreas/CrowbarDoor" unique_id=1033447528]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_1u8w0")
+
+[node name="Generator" type="Node3D" parent="InteractableAreas" unique_id=1550616739 groups=["Navigation"]]
+transform = Transform3D(1, 0, -4.371139e-08, 0, 1, 0, 4.371139e-08, 0, 1, -74.05973, -0.92172086, 4.981201)
+script = ExtResource("8_efxa6")
+id = 3
+pre_requisites = Array[int]([3])
+
+[node name="machinery_mx_12" parent="InteractableAreas/Generator" unique_id=215990985 instance=ExtResource("14_0odxb")]
+
+[node name="GeneratorCollision" type="StaticBody3D" parent="InteractableAreas/Generator" unique_id=2117963184]
+transform = Transform3D(0.96870315, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableAreas/Generator/GeneratorCollision" unique_id=1437540566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15470505, 1.05, 0.01606369)
+shape = SubResource("BoxShape3D_door_body")
+
+[node name="Area3D" type="Area3D" parent="InteractableAreas/Generator" unique_id=772192804]
+transform = Transform3D(2.5383139, 0, 0, 0, 1, 0, -7.1054274e-15, 0, 1.6386061, -0.3737793, 0.27698922, -0.90345764)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableAreas/Generator/Area3D" unique_id=763718592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09790039, 0, -0.015197754)
+shape = SubResource("BoxShape3D_door")
 
 [node name="KeyDoor" type="Node3D" parent="InteractableAreas" unique_id=1240110554 groups=["Navigation"]]
 transform = Transform3D(-1, 0, -4.371139e-08, 0, 1, 0, 4.371139e-08, 0, -1, -77.68474, -0.98439455, -9.596903)

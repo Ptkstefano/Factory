@@ -156,6 +156,9 @@ func on_interact_area_entered(area: Area3D) -> void:
 		elif interactable.id == Ids.INTERACTABLE_AREAS.KEY_DOOR:
 			hint_prompt.text = "Press F to open the door"
 			hint_prompt.visible = true
+		elif interactable.id == Ids.INTERACTABLE_AREAS.POWER_GENERATOR:
+			hint_prompt.text = "Press F to turn on the power"
+			hint_prompt.visible = true
 
 func on_interact_area_exited(area: Area3D) -> void:
 	#var pickup = area.get_parent()

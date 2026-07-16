@@ -32,7 +32,8 @@ func activate():
 		%KeyDoorCollision.queue_free()
 		## Signals.bake_navmesh.emit()
 		## call_deferred('alert_enemy')
-		
+	if id == Ids.INTERACTABLE_AREAS.POWER_GENERATOR:
+		GameState.power_on = true
 
 func alert_enemy():
 	Signals.alert_enemy.emit(global_position)
