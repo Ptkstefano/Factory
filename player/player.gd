@@ -2,11 +2,12 @@ extends CharacterBody3D
 
 class_name Player
 
-const SPEED = 3.0
 var BOB_FREQ = 2.0
-const BOB_AMP = 0.06
+var BOB_AMP = 0.06
 
+var current_speed = 3.0
 var player_speed = 3.0
+var player_run_speed = 5.0
 
 const STAND_HEIGHT = 2.0
 const CROUCH_HEIGHT = 1.2
@@ -17,12 +18,16 @@ const CROUCH_SPEED = 10.0
 var bob_time := 0.0
 var camera_base_y := STAND_CAM_Y
 var camera_target_y := STAND_CAM_Y
+
 var is_crouching := false
+var is_flashlight_on := false
 
 var current_interactable : Node3D = null
 var inventory : Array[Ids.OBJECTS] = []
 
 var has_flashlight : bool = false
+
+var times_hit : int = 0
 
 @export var set_camera_as_active : bool = true
 
@@ -59,16 +64,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			_crouch()
 	elif event.is_action_pressed('sprint'):
-		player_speed = 5
+		current_speed = player_run_speed
 	elif event.is_action_released('sprint'):
-		player_speed = 3
+		current_speed = player_speed
 	elif event.is_action_pressed('flashlight'):
 		if !has_flashlight:
 			return
 		if %flashlight.visible:
-			%flashlight.hide()
+			turn_off_flashlight()
 		else:
-			%flashlight.show()
+			turn_on_flashlight()
 	elif event.is_action_pressed("interact") and current_interactable:
 		_interact_with_current_interactable()
 
@@ -99,7 +104,7 @@ func _has_space_to_stand() -> bool:
 	return space.intersect_ray(params).is_empty()
 
 func _physics_process(delta: float) -> void:
-	var speed = player_speed * (0.6 if is_crouching else 1.0)
+	var speed = current_speed * (0.6 if is_crouching else 1.0)
 	var input_direction_2d = Input.get_vector("move_left","move_right","move_forward","move_back")
 	var input_direction_3d = Vector3(input_direction_2d.x, 0, input_direction_2d.y)
 	var direction = transform.basis * input_direction_3d
@@ -184,9 +189,11 @@ func _interact_with_current_interactable() -> void:
 
 func turn_on_flashlight():
 	%flashlight.show()
+	is_flashlight_on = true
 	
 func turn_off_flashlight():
 	%flashlight.hide()
+	is_flashlight_on = false
 
 func _add_inventory_slot(pickup) -> void:
 	var slot := PanelContainer.new()
@@ -225,3 +232,47 @@ func on_sound_area_entered(area):
 func on_sound_area_exited(area):
 	if area is SoundArea:
 		sound_area = Ids.SOUND_AREAS.INSIDE
+
+func take_damage():
+	times_hit += 1
+	start_damage_flash()
+	make_hurt()
+	if times_hit >= 2:
+		make_dead()
+		print('DEAD')
+
+func make_hurt():
+	player_speed = 2.0
+	player_run_speed = 3.5
+
+func make_dead():
+	%DamageRect.color = Color(0.0, 0.0, 0.0, 0.8)
+	%Camera3D.position.y = 0.2
+	%flashlight.hide()
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+func start_damage_flash() -> void:
+	
+	var maximum_alpha: float = 0.1
+	var minimum_alpha: float = 0.05
+	var flash_speed: float = 0.8
+
+	%DamageRect.visible = true
+	%DamageRect.color = Color(1.0, 0.0, 0.0, minimum_alpha)
+
+	var flash_tween = create_tween()
+	flash_tween.set_loops()
+
+	flash_tween.tween_property(
+		%DamageRect,
+		"color:a",
+		maximum_alpha,
+		flash_speed
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	flash_tween.tween_property(
+		%DamageRect,
+		"color:a",
+		minimum_alpha,
+		flash_speed
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

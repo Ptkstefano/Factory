@@ -273,3 +273,15 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SoundArea" unique_id=2032915778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1620989, 0)
 shape = SubResource("SphereShape3D_wodsf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1926258409]
+
+[node name="DamageRect" type="ColorRect" parent="CanvasLayer" unique_id=924978324]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0)

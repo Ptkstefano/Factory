@@ -18,6 +18,10 @@ var gravity: float = float(ProjectSettings.get_setting("physics/3d/default_gravi
 var destinations: Array[Node3D] = []
 var current_destination: Node3D = null
 
+var shoot_count : int = 0
+
+var shoot_distance = 25
+
 var detection_progress : float = 0:
 	set(value):
 		detection_progress = clampf(value,0, 100)
@@ -59,6 +63,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	print('DISTANCE: ' + str(global_position.distance_to(player.global_position)))
+	
 	if state == STATES.IDLE:
 		%AnimationTree.set("parameters/Patrol/blend_position", -1)
 	elif state == STATES.PATROLLING:
@@ -74,9 +80,16 @@ func _physics_process(delta: float) -> void:
 		if detection_progress >= 99:
 			check_for_shot()
 		if detection_progress <= 1:
+			shoot_count = 0
 			change_state(STATES.PATROLLING)
 	elif state == STATES.SHOOTING:
 		look_at(player.global_position)
+		## Makes enemy rush the player if they shot too many times and didn't kill
+		if shoot_count > 4:
+			shoot_distance = 2
+		else:
+			shoot_distance = 25
+			
 	else:
 		stop_moving(delta)
 		
@@ -130,10 +143,16 @@ func update_detection_progress(delta):
 			var direction_to_player := global_position.direction_to(player.global_position)
 			var enemy_forward := -global_transform.basis.z.normalized()
 			if enemy_forward.dot(direction_to_player) < 0.0:
-				raycast.debug_shape_custom_color = Color.YELLOW
-				detection_progress -= delta * 10
+				if global_position.distance_to(player.global_position) < 5:
+					increase_detection_progress(delta)
+					print('TOO NEAR')
+				else:
+					if player.is_flashlight_on:
+						increase_detection_progress(delta)
+					else:
+						raycast.debug_shape_custom_color = Color.YELLOW
+						detection_progress -= delta * 10
 			else:
-				#detection_progress += delta * 10 * global_position.distance_to(player.global_position)
 				increase_detection_progress(delta)
 				raycast.debug_shape_custom_color = Color.RED
 		else:
@@ -267,6 +286,15 @@ func increase_detection_progress(delta: float) -> void:
 
 	var minimum_distance: float = 1.0
 	var maximum_distance: float = 30.0
+	
+	var detection_multiplier = 1
+	
+	
+	if player.is_flashlight_on:
+		detection_multiplier += 1
+	else:
+		if global_position.distance_to(player.global_position) > 15:
+			detection_multiplier -= 1
 
 	## Lower is faster
 	var distance_exponent: float = 0.75
@@ -297,7 +325,7 @@ func increase_detection_progress(delta: float) -> void:
 	)
 	
 
-	detection_progress += delta * detection_speed
+	detection_progress += delta * detection_speed * detection_multiplier
 	
 	if state == STATES.PATROLLING:
 		if detection_progress >= 99:
@@ -308,7 +336,7 @@ func increase_detection_progress(delta: float) -> void:
 func check_for_shot():
 	if raycast.is_colliding():
 		if raycast.get_collider() is Player:
-			if global_position.distance_to(player.global_position) < 25:
+			if global_position.distance_to(player.global_position) < shoot_distance:
 				change_state(STATES.SHOOTING)
 
 func shot_ended():
@@ -316,6 +344,10 @@ func shot_ended():
 
 func play_gunshot():
 	%Gunshot.play()
+	
+	fire_shotgun()
+	%GPUParticles3D.restart()
+	%GPUParticles3D.emitting = true
 	
 	%Flash.show()
 	await get_tree().create_timer(0.1).timeout
@@ -359,3 +391,163 @@ func on_sound_area_entered(area):
 func on_sound_area_exited(area):
 	if area is SoundArea:
 		sound_area = Ids.SOUND_AREAS.INSIDE
+
+func fire_shotgun() -> void:
+	shoot_count += 1
+	
+	var fire_position = %ShotgunMuzzle.global_position
+	
+	
+	
+	var space_state := get_world_3d().direct_space_state
+	var center_direction = fire_position.direction_to(player.global_position)
+	
+
+	var pellet_count = 12
+	var spread_degrees = 7.5
+	var shotgun_collision_mask = 1
+	var shotgun_range = 100
+
+	for pellet_index in pellet_count:
+		var pellet_direction := get_scattered_direction(
+			center_direction,
+			spread_degrees
+		)
+
+		var ray_end = fire_position + pellet_direction * shotgun_range
+
+		var query := PhysicsRayQueryParameters3D.create(
+			fire_position,
+			ray_end,
+			shotgun_collision_mask
+		)
+
+		# Prevent the enemy from shooting itself.
+		query.exclude = [self]
+
+		var result := space_state.intersect_ray(query)
+
+		if result.is_empty():
+			# Red means the pellet did not hit anything.
+			draw_debug_ray(
+				fire_position,
+				ray_end,
+				Color.LIME_GREEN,
+				0.75
+			)
+
+			continue
+			
+		var collider: Object = result["collider"]
+		var hit_position: Vector3 = result["position"]
+		var hit_normal: Vector3 = result["normal"]
+		
+		if collider is Player:
+			draw_debug_ray(
+				fire_position,
+				hit_position,
+				Color.RED,
+				0.75
+			)
+		else:
+				draw_debug_ray(
+				fire_position,
+				ray_end,
+				Color.LIME_GREEN,
+				0.75
+			)
+
+		handle_pellet_hit(
+			collider,
+			hit_position,
+			hit_normal,
+			pellet_direction
+		)
+		
+func get_scattered_direction(
+	center_direction: Vector3,
+	spread_angle_degrees: float
+) -> Vector3:
+	var forward := center_direction.normalized()
+
+	# Creates vectors perpendicular to the shooting direction.
+	var reference_up := Vector3.UP
+
+	# Avoid problems when firing almost directly upward or downward.
+	if abs(forward.dot(reference_up)) > 0.99:
+		reference_up = Vector3.RIGHT
+
+	var right := forward.cross(reference_up).normalized()
+	var up := right.cross(forward).normalized()
+
+	# sqrt() distributes pellets evenly across the circular spread.
+	# Without sqrt(), too many pellets would cluster near the center.
+	var random_radius := sqrt(randf())
+	var random_angle := randf_range(0.0, TAU)
+
+	var spread_radius := tan(deg_to_rad(spread_angle_degrees))
+
+	var horizontal_offset := (
+		cos(random_angle)
+		* random_radius
+		* spread_radius
+	)
+
+	var vertical_offset := (
+		sin(random_angle)
+		* random_radius
+		* spread_radius
+	)
+
+	return (
+		forward
+		+ right * horizontal_offset
+		+ up * vertical_offset
+	).normalized()
+
+func handle_pellet_hit(
+	collider: Object,
+	hit_position: Vector3,
+	hit_normal: Vector3,
+	pellet_direction: Vector3
+) -> void:
+	if collider is Player:
+		collider.take_damage()
+
+	# Optional impact effect.
+	#spawn_impact_effect(hit_position, hit_normal)
+	
+func draw_debug_ray(
+	from: Vector3,
+	to: Vector3,
+	color: Color = Color.RED,
+	duration: float = 0.5
+) -> void:
+	return
+	var immediate_mesh := ImmediateMesh.new()
+
+	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+
+	# The vertices are local to the MeshInstance3D.
+	immediate_mesh.surface_add_vertex(Vector3.ZERO)
+	immediate_mesh.surface_add_vertex(to - from)
+
+	immediate_mesh.surface_end()
+
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_color = color
+
+	# Makes the rays visible even when they are behind walls.
+	# Remove this if you want normal depth/occlusion behavior.
+	material.no_depth_test = true
+
+	var line := MeshInstance3D.new()
+	line.mesh = immediate_mesh
+	line.material_override = material
+
+	get_tree().current_scene.add_child(line)
+	line.global_position = from
+
+	# Automatically remove the debug line.
+	get_tree().create_timer(duration).timeout.connect(line.queue_free)
