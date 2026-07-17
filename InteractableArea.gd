@@ -27,7 +27,8 @@ func activate():
 		await %CrowbarDoorAnimation.animation_finished
 		%CrowbarDoorCollision.queue_free()
 		Signals.bake_navmesh.emit()
-		call_deferred('alert_enemy')
+		await get_tree().create_timer(3).timeout
+		alert_enemy(%CrowbarDoorWaypoint.global_position)
 	if id == Ids.INTERACTABLE_AREAS.KEY_DOOR:
 		%KeyDoorAnimation.play('open_door')
 		await %KeyDoorAnimation.animation_finished
@@ -36,8 +37,9 @@ func activate():
 		## call_deferred('alert_enemy')
 	if id == Ids.INTERACTABLE_AREAS.POWER_GENERATOR:
 		GameState.power_on = true
+		Signals.power_on.emit()
 	if id == Ids.INTERACTABLE_AREAS.GATE_BUTTON:
 		%GateButtonAnimation.play('open_gate')
 
-func alert_enemy():
-	Signals.alert_enemy.emit(global_position)
+func alert_enemy(pos):
+	Signals.alert_enemy.emit(pos)

@@ -223,7 +223,7 @@ theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FlashlightHint" type="Label" parent="." unique_id=3021458812]
+[node name="FlashlightHint" type="Label" parent="." unique_id=-1273508484]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 8
@@ -245,7 +245,29 @@ text = "Right-click to turn the flashlight on/off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FlashlightHintTimer" type="Timer" parent="." unique_id=3021458813]
+[node name="WinHint" type="Label" parent="." unique_id=470653362]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 110.0
+offset_right = 200.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "You escaped succesfully!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FlashlightHintTimer" type="Timer" parent="." unique_id=-1273508483]
 unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
