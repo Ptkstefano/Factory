@@ -59,19 +59,24 @@ func _ready() -> void:
 	
 	%SoundArea.area_entered.connect(on_sound_area_entered)
 	%SoundArea.area_exited.connect(on_sound_area_exited)
+	Signals.alert_enemy.connect(on_alert_enemy)
+	Signals.win.connect(on_game_ended)
 	
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug3"):
+		if !%Debug.visible:
+			%Debug.show()
+		else:
+			%Debug.hide()
+
 func _physics_process(delta: float) -> void:
-	
-	print('DISTANCE: ' + str(global_position.distance_to(player.global_position)))
-	
 	if state == STATES.IDLE:
 		%AnimationTree.set("parameters/Patrol/blend_position", -1)
 	elif state == STATES.PATROLLING:
 		var horizontal_speed = Vector3(velocity.x, 0.0, velocity.z).length()
 		%AnimationTree.set("parameters/Patrol/blend_position", horizontal_speed - 1)
 		move_towards_destination(delta)
-		
 	elif state == STATES.CHASING:
 		var horizontal_speed = Vector3(velocity.x, 0.0, velocity.z).length()
 		%AnimationTree.set("parameters/Chase/blend_position",horizontal_speed - 1)
@@ -82,6 +87,10 @@ func _physics_process(delta: float) -> void:
 		if detection_progress <= 1:
 			shoot_count = 0
 			change_state(STATES.PATROLLING)
+	elif state == STATES.INVESTIGATING:
+		var horizontal_speed = Vector3(velocity.x, 0.0, velocity.z).length()
+		%AnimationTree.set("parameters/Chase/blend_position",horizontal_speed - 1)
+		move_towards_destination(delta)
 	elif state == STATES.SHOOTING:
 		look_at(player.global_position)
 		## Makes enemy rush the player if they shot too many times and didn't kill
@@ -104,7 +113,8 @@ func change_state(new_state : STATES):
 	print('NEW STATE: ' + str(state))
 	match new_state:
 		STATES.IDLE:
-			$StateTimer.start()
+			if !GameState.game_ended:
+				$StateTimer.start()
 			%AnimationTree.get('parameters/playback').start("Patrol")
 			%StateLabel.text='IDLE'
 			return
@@ -117,11 +127,21 @@ func change_state(new_state : STATES):
 			%AnimationTree.get('parameters/playback').start("Chase")
 			%StateLabel.text='CHASING'
 			return
+		STATES.INVESTIGATING:
+			%AnimationTree.get('parameters/playback').start("Chase")
+			%StateLabel.text='INVESTIGATING'
+			return
 		STATES.SHOOTING:
 			%AnimationTree.get('parameters/playback').start("Shoot")
 			%StateLabel.text='SHOOTING'
 			%AnimationTree.set("parameters/Shoot/blend_position",1)
 			return
+
+func on_alert_enemy(alert_position):
+	if state in [STATES.IDLE, STATES.PATROLLING]:
+		print('enemy alerted')
+		navigation_agent.target_position = alert_position
+		change_state(STATES.INVESTIGATING)
 
 func update_line_of_sight():
 	## Esse offset faz o raycast ir de cima pra baixo em uma sinewave pra você não poder se esconder escondendo só a cabeça
@@ -139,13 +159,14 @@ func update_detection_progress(delta):
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
 		if collider is Player:
+			if player.is_dead:
+				return
 			set_audio_ducking(true)
 			var direction_to_player := global_position.direction_to(player.global_position)
 			var enemy_forward := -global_transform.basis.z.normalized()
 			if enemy_forward.dot(direction_to_player) < 0.0:
 				if global_position.distance_to(player.global_position) < 5:
 					increase_detection_progress(delta)
-					print('TOO NEAR')
 				else:
 					if player.is_flashlight_on:
 						increase_detection_progress(delta)
@@ -178,6 +199,7 @@ func move_towards_destination(delta):
 	#else:
 		#print('reacheable')
 
+
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 	var direction: Vector3 = next_path_position - global_position
 
@@ -189,7 +211,7 @@ func move_towards_destination(delta):
 	var desired_velocity : Vector3
 	if state == STATES.PATROLLING:
 		desired_velocity = direction * patrol_speed
-	elif state == STATES.CHASING:
+	elif state in [STATES.CHASING, STATES.INVESTIGATING]:
 		desired_velocity = direction * run_speed
 
 	velocity.x = move_toward(velocity.x, desired_velocity.x, acceleration * delta)
@@ -327,7 +349,7 @@ func increase_detection_progress(delta: float) -> void:
 
 	detection_progress += delta * detection_speed * detection_multiplier
 	
-	if state == STATES.PATROLLING:
+	if state == STATES.PATROLLING or state == STATES.INVESTIGATING:
 		if detection_progress >= 99:
 			change_state(STATES.CHASING)
 		elif detection_progress > 70:
@@ -523,7 +545,8 @@ func draw_debug_ray(
 	color: Color = Color.RED,
 	duration: float = 0.5
 ) -> void:
-	return
+	if !GameState.debug:
+		return
 	var immediate_mesh := ImmediateMesh.new()
 
 	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
@@ -551,3 +574,6 @@ func draw_debug_ray(
 
 	# Automatically remove the debug line.
 	get_tree().create_timer(duration).timeout.connect(line.queue_free)
+
+func on_game_ended():
+	change_state(STATES.IDLE)

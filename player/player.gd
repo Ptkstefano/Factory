@@ -29,6 +29,8 @@ var has_flashlight : bool = false
 
 var times_hit : int = 0
 
+var is_dead : bool = false
+
 @export var set_camera_as_active : bool = true
 
 @onready var col_shape: CollisionShape3D = $CollisionShape3D
@@ -48,6 +50,7 @@ func _ready() -> void:
 	%SoundArea.area_entered.connect(on_sound_area_entered)
 	%SoundArea.area_exited.connect(on_sound_area_exited)
 	%FlashlightHintTimer.timeout.connect(hide_flashlight_hint)
+	Signals.power_on.connect(turn_off_flashlight)
 	
 	if set_camera_as_active:
 		%Camera3D.make_current()
@@ -77,6 +80,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			turn_on_flashlight()
 	elif event.is_action_pressed("interact") and current_interactable:
 		_interact_with_current_interactable()
+	elif event.is_action_pressed("debug1"):
+		debug_add_items()
+	elif event.is_action_pressed('lmb'):
+		print('lmb')
+		if is_dead:
+			GameState.reset()
 
 func _crouch() -> void:
 	is_crouching = true
@@ -105,6 +114,8 @@ func _has_space_to_stand() -> bool:
 	return space.intersect_ray(params).is_empty()
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	var speed = current_speed * (0.6 if is_crouching else 1.0)
 	var input_direction_2d = Input.get_vector("move_left","move_right","move_forward","move_back")
 	var input_direction_3d = Vector3(input_direction_2d.x, 0, input_direction_2d.y)
@@ -162,6 +173,10 @@ func on_interact_area_entered(area: Area3D) -> void:
 		elif interactable.id == Ids.INTERACTABLE_AREAS.GATE_BUTTON:
 			hint_prompt.text = "Press F to open the gates"
 			hint_prompt.visible = true
+		elif interactable.id == Ids.INTERACTABLE_AREAS.WIN:
+			%WinHint.show()
+			GameState.on_toggle_game_ended()
+			
 
 func on_interact_area_exited(area: Area3D) -> void:
 	#var pickup = area.get_parent()
@@ -183,7 +198,6 @@ func _interact_with_current_interactable() -> void:
 
 	current_interactable = null
 	hint_prompt.visible = false
-	print('INTERACTING')
 
 	if interactable is Pickup:
 		inventory.append(interactable.id)
@@ -204,6 +218,9 @@ func turn_on_flashlight():
 	
 func turn_off_flashlight():
 	%flashlight.hide()
+	if GameState.power_on:
+		is_flashlight_on = true
+		return
 	is_flashlight_on = false
 
 func show_flashlight_hint() -> void:
@@ -267,7 +284,8 @@ func make_dead():
 	%DamageRect.color = Color(0.0, 0.0, 0.0, 0.8)
 	%Camera3D.position.y = 0.2
 	%flashlight.hide()
-	process_mode = Node.PROCESS_MODE_DISABLED
+	#process_mode = Node.PROCESS_MODE_DISABLED
+	is_dead = true
 
 func start_damage_flash() -> void:
 	
@@ -294,3 +312,7 @@ func start_damage_flash() -> void:
 		minimum_alpha,
 		flash_speed
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func debug_add_items():
+	print('adding items')
+	inventory = [Ids.OBJECTS.CROWBAR, Ids.OBJECTS.KEY, Ids.OBJECTS.FUEL]
