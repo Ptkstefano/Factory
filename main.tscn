@@ -577,7 +577,7 @@ spot_range = 184.548
 spot_attenuation = -0.62
 
 [node name="Player" parent="." unique_id=867598267 instance=ExtResource("2_player")]
-transform = Transform3D(0.5238913, 0, -0.8517852, 0, 1, 0, 0.8517852, 0, 0.5238913, 44.157066, 1.9023497, -35.373444)
+transform = Transform3D(0.5238913, 0, -0.8517852, 0, 1, 0, 0.8517852, 0, 0.5238913, 32.229202, 1.9023497, 51.154083)
 
 [node name="SpotLight3D" parent="Player/Camera3D/flashlight/flashlight_mp_12" parent_id_path=PackedInt32Array(867598267, 2069393863) index="1" unique_id=1681132301]
 light_energy = 2.399
