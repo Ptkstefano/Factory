@@ -200,6 +200,7 @@ func _interact_with_current_interactable() -> void:
 	hint_prompt.visible = false
 
 	if interactable is Pickup:
+		%pickupSFX.play()
 		inventory.append(interactable.id)
 		_add_inventory_slot(interactable)
 		interactable.pick_up()
@@ -214,10 +215,12 @@ func _interact_with_current_interactable() -> void:
 
 func turn_on_flashlight():
 	%flashlight.show()
+	%FlashOn.play()
 	is_flashlight_on = true
 	
 func turn_off_flashlight():
 	%flashlight.hide()
+	%FlashOff.play()
 	if GameState.power_on:
 		is_flashlight_on = true
 		return

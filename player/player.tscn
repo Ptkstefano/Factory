@@ -20,6 +20,9 @@
 [ext_resource type="AudioStream" uid="uid://blhckaxcw16fx" path="res://sfx/player_fs_grass_3.ogg" id="18_bjvpn"]
 [ext_resource type="AudioStream" uid="uid://do1be4qoroui1" path="res://sfx/player_fs_grass_4.ogg" id="19_s7qer"]
 [ext_resource type="AudioStream" uid="uid://c6fs5wt4bm22y" path="res://sfx/player_fs_grass_5.ogg" id="20_g4c7l"]
+[ext_resource type="AudioStream" uid="uid://bmt8xwsli8oat" path="res://sfx/pickup.ogg" id="21_x7c3f"]
+[ext_resource type="AudioStream" uid="uid://b7lhou8d7brhd" path="res://sfx/flash_on.ogg" id="22_s7qer"]
+[ext_resource type="AudioStream" uid="uid://c6i5jo1vcfwxt" path="res://sfx/flash_off.ogg" id="23_g4c7l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 
@@ -334,3 +337,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0, 0, 0)
+
+[node name="pickupSFX" type="AudioStreamPlayer3D" parent="." unique_id=130908578]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5572816, 0)
+stream = ExtResource("21_x7c3f")
+
+[node name="FlashOn" type="AudioStreamPlayer3D" parent="." unique_id=1768197290]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5572816, 0)
+stream = ExtResource("22_s7qer")
+
+[node name="FlashOff" type="AudioStreamPlayer3D" parent="." unique_id=2104097328]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5572816, 0)
+stream = ExtResource("23_g4c7l")

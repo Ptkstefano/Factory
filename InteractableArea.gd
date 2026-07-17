@@ -24,6 +24,7 @@ func activate():
 		queue_free()
 	if id == Ids.INTERACTABLE_AREAS.CROWBAR_DOOR:
 		%CrowbarDoorAnimation.play('fall_down')
+		%CrowbarDoorSFX.play()
 		await %CrowbarDoorAnimation.animation_finished
 		%CrowbarDoorCollision.queue_free()
 		Signals.bake_navmesh.emit()
@@ -31,15 +32,17 @@ func activate():
 		alert_enemy(%CrowbarDoorWaypoint.global_position)
 	if id == Ids.INTERACTABLE_AREAS.KEY_DOOR:
 		%KeyDoorAnimation.play('open_door')
+		%KeyDoorSFX.play()
 		await %KeyDoorAnimation.animation_finished
-		%KeyDoorCollision.queue_free()
 		## Signals.bake_navmesh.emit()
 		## call_deferred('alert_enemy')
 	if id == Ids.INTERACTABLE_AREAS.POWER_GENERATOR:
+		%GeneratorSFX.play()
 		GameState.power_on = true
 		Signals.power_on.emit()
 	if id == Ids.INTERACTABLE_AREAS.GATE_BUTTON:
 		%GateButtonAnimation.play('open_gate')
+		%GateSFX.play()
 
 func alert_enemy(pos):
 	Signals.alert_enemy.emit(pos)
