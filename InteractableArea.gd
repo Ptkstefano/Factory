@@ -9,6 +9,8 @@ class_name InteractableArea
 var activated : bool = false
 
 func has_pre_requisites(inventory: Array[Ids.OBJECTS]) -> bool:
+	if id == Ids.INTERACTABLE_AREAS.GATE_BUTTON and not GameState.power_on:
+		return false
 	for pre_requisite in pre_requisites:
 		if not inventory.has(pre_requisite):
 			return false
@@ -34,6 +36,8 @@ func activate():
 		## call_deferred('alert_enemy')
 	if id == Ids.INTERACTABLE_AREAS.POWER_GENERATOR:
 		GameState.power_on = true
+	if id == Ids.INTERACTABLE_AREAS.GATE_BUTTON:
+		%GateButtonAnimation.play('open_gate')
 
 func alert_enemy():
 	Signals.alert_enemy.emit(global_position)

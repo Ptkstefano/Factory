@@ -107,6 +107,11 @@
 [ext_resource type="PackedScene" uid="uid://cs5368g221cod" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/pipes_hr_1_horizontal_middle_1.glb" id="105_762o3"]
 [ext_resource type="PackedScene" uid="uid://ingfvo1l6tt7" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/pipes_hr_1.glb" id="106_swjba"]
 [ext_resource type="PackedScene" uid="uid://lkuvuel4bext" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/pipes_hr_1_horizontal_middle_2.glb" id="107_3dt87"]
+[ext_resource type="PackedScene" uid="uid://bvqifs7cen0ti" path="res://PizzaDoggy/Furniture/table_large_3_1.glb" id="109_fcxnf"]
+[ext_resource type="PackedScene" uid="uid://u8jb7a5awrr7" path="res://PizzaDoggy2/GLB (recommended)/Props/toolbox_mx_1.glb" id="110_j42v6"]
+[ext_resource type="PackedScene" uid="uid://biowa48yej5ms" path="res://PizzaDoggy/Furniture/chair_mp_3_4.glb" id="111_6p6e0"]
+[ext_resource type="PackedScene" uid="uid://cj7yrbynso0d2" path="res://PizzaDoggy/Small Props/open_book_mp_1.glb" id="112_ri2l1"]
+[ext_resource type="PackedScene" uid="uid://cntq6irojvwey" path="res://PizzaDoggy/Small Props/ashtray_1.glb" id="113_52qux"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aoqsc"]
 albedo_texture = ExtResource("1_yjxuc")
@@ -1881,7 +1886,6 @@ shape = SubResource("ConcavePolygonShape3D_yegu8")
 
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Walls" unique_id=1341453134]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.024, 1.5017061, -8.835222)
-visible = false
 mesh = SubResource("ArrayMesh_qh1jm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls" unique_id=1776724629]
@@ -1890,7 +1894,6 @@ shape = SubResource("ConcavePolygonShape3D_2mem0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls" unique_id=52693458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.998215, 0, 70.29853)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D" unique_id=1082308053]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.828232, 1.9721069, 0)
@@ -3695,16 +3698,6 @@ mesh = SubResource("ArrayMesh_3o7ao")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1525574e-07, 1.15, 7.636845e-07)
 shape = SubResource("BoxShape3D_0sd67")
 
-[node name="fence_e_15" type="StaticBody3D" parent="." unique_id=218910411]
-transform = Transform3D(-6.671167e-08, 0, -1, 0, 1, 0, 1.5261852, 0, -4.371139e-08, 162.14136, -0.14263868, -14.781436)
-
-[node name="fence_e_1" type="MeshInstance3D" parent="fence_e_15" unique_id=960779467]
-mesh = SubResource("ArrayMesh_3o7ao")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="fence_e_15" unique_id=1553148804]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1525574e-07, 1.15, 7.636845e-07)
-shape = SubResource("BoxShape3D_0sd67")
-
 [node name="fence_e_16" type="StaticBody3D" parent="." unique_id=1938131595]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 162.26492, 0, -19.152517)
 
@@ -4163,3 +4156,21 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 66.4
 
 [node name="pipes_hr_14" parent="." unique_id=535487411 instance=ExtResource("106_swjba")]
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 66.29922, 0.34192133, 66.83495)
+
+[node name="table_large_3_12" parent="." unique_id=1838379006 instance=ExtResource("109_fcxnf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.39186, 0.059837997, -9.821323)
+
+[node name="toolbox_mx_12" parent="." unique_id=1283641815 instance=ExtResource("110_j42v6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.25212, 0.057006683, -9.911297)
+
+[node name="chair_mp_3_42" parent="." unique_id=908393706 instance=ExtResource("111_6p6e0")]
+transform = Transform3D(-0.7843921, 0, -0.6202653, 0, 1, 0, 0.6202653, 0, -0.7843921, 158.45866, 0.057006, -8.131054)
+
+[node name="open_book_mp_12" parent="." unique_id=2124162609 instance=ExtResource("112_ri2l1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.51634, 0.98306865, -9.883094)
+
+[node name="plate_mp_13" parent="." unique_id=1986085536 instance=ExtResource("94_yegu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.95425, 0.9986956, -9.80039)
+
+[node name="ashtray_12" parent="." unique_id=869506544 instance=ExtResource("113_52qux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.75522, 0.9870583, -9.969492)
