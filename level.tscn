@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://iw6lycbmhrc1" path="res://PizzaDoggy/Furniture/chair_mp_4_2.glb" id="5_f2txt"]
 [ext_resource type="Texture2D" uid="uid://whxspmh83oev" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/floor_ceiling_hr_3_concrete_hr_1.png" id="5_yegu8"]
 [ext_resource type="PackedScene" uid="uid://bqesgfk1oikn7" path="res://PizzaDoggy2/GLB (recommended)/Structures/water_tower_hm_1.glb" id="6_1ainy"]
-[ext_resource type="Texture2D" uid="uid://grq8e5svdtst" path="res://PizzaDoggy/Modular Structures/arc_2_wall_1_wall_3.png" id="6_qh1jm"]
+[ext_resource type="Texture2D" uid="uid://2yr5x28kxlc6" path="res://PizzaDoggy/Modular Structures/arc_2_wall_1_wall_3.png" id="6_qh1jm"]
 [ext_resource type="Texture2D" uid="uid://b36j2mavddfg5" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/floor_ceiling_hr_3_wall_hr_2.png" id="6_wpw4j"]
 [ext_resource type="PackedScene" uid="uid://bl02phl61ovhp" path="res://props/bed frame.tscn" id="10_0k1o5"]
 [ext_resource type="PackedScene" uid="uid://1eqbevtu1mbv" path="res://props/tank_system_mx_12.tscn" id="11_4wtct"]
@@ -103,6 +103,15 @@
 [ext_resource type="PackedScene" uid="uid://c85wxfia6pgn6" path="res://PizzaDoggy2/GLB (recommended)/Props/speaker_mx_1_2.glb" id="98_jnlqa"]
 [ext_resource type="PackedScene" uid="uid://bbs5fjlf7q7x3" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/wall_hs_1_m1a_1.glb" id="100_lupeo"]
 [ext_resource type="PackedScene" uid="uid://dkk7iwydftdot" path="res://PizzaDoggy2/GLB (recommended)/Modular Structures/wall_hs_1.glb" id="101_5ta2p"]
+[ext_resource type="PackedScene" uid="uid://doggvkajnnflt" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/pipes_hr_1_elbow_1.glb" id="104_jnlqa"]
+[ext_resource type="PackedScene" uid="uid://cs5368g221cod" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/pipes_hr_1_horizontal_middle_1.glb" id="105_762o3"]
+[ext_resource type="PackedScene" uid="uid://ingfvo1l6tt7" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/pipes_hr_1.glb" id="106_swjba"]
+[ext_resource type="PackedScene" uid="uid://lkuvuel4bext" path="res://PizzaDoggy2/GLB (recommended)/Large Props & Machinery/pipes_hr_1_horizontal_middle_2.glb" id="107_3dt87"]
+[ext_resource type="PackedScene" uid="uid://bvqifs7cen0ti" path="res://PizzaDoggy/Furniture/table_large_3_1.glb" id="109_fcxnf"]
+[ext_resource type="PackedScene" uid="uid://u8jb7a5awrr7" path="res://PizzaDoggy2/GLB (recommended)/Props/toolbox_mx_1.glb" id="110_j42v6"]
+[ext_resource type="PackedScene" uid="uid://biowa48yej5ms" path="res://PizzaDoggy/Furniture/chair_mp_3_4.glb" id="111_6p6e0"]
+[ext_resource type="PackedScene" uid="uid://cj7yrbynso0d2" path="res://PizzaDoggy/Small Props/open_book_mp_1.glb" id="112_ri2l1"]
+[ext_resource type="PackedScene" uid="uid://cntq6irojvwey" path="res://PizzaDoggy/Small Props/ashtray_1.glb" id="113_52qux"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aoqsc"]
 albedo_texture = ExtResource("1_yjxuc")
@@ -1877,7 +1886,6 @@ shape = SubResource("ConcavePolygonShape3D_yegu8")
 
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Walls" unique_id=1341453134]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.024, 1.5017061, -8.835222)
-visible = false
 mesh = SubResource("ArrayMesh_qh1jm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls" unique_id=1776724629]
@@ -1886,7 +1894,6 @@ shape = SubResource("ConcavePolygonShape3D_2mem0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls" unique_id=52693458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.998215, 0, 70.29853)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D" unique_id=1082308053]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.828232, 1.9721069, 0)
@@ -3691,16 +3698,6 @@ mesh = SubResource("ArrayMesh_3o7ao")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1525574e-07, 1.15, 7.636845e-07)
 shape = SubResource("BoxShape3D_0sd67")
 
-[node name="fence_e_15" type="StaticBody3D" parent="." unique_id=218910411]
-transform = Transform3D(-6.671167e-08, 0, -1, 0, 1, 0, 1.5261852, 0, -4.371139e-08, 162.14136, -0.14263868, -14.781436)
-
-[node name="fence_e_1" type="MeshInstance3D" parent="fence_e_15" unique_id=960779467]
-mesh = SubResource("ArrayMesh_3o7ao")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="fence_e_15" unique_id=1553148804]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1525574e-07, 1.15, 7.636845e-07)
-shape = SubResource("BoxShape3D_0sd67")
-
 [node name="fence_e_16" type="StaticBody3D" parent="." unique_id=1938131595]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 162.26492, 0, -19.152517)
 
@@ -3815,7 +3812,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0050001144, 1.25, 0)
 shape = SubResource("BoxShape3D_ymw0v")
 
 [node name="machinery_mx_12" parent="." unique_id=1469692826 instance=ExtResource("71_2mem0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.610966, 0.016918825, 74.4735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.555565, 0.016918825, 74.4735)
 
 [node name="electrical_equipment_22" parent="." unique_id=1397762747 instance=ExtResource("72_1acxm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 53.86001, 0.016870022, 75.10571)
@@ -3824,7 +3821,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 53.8
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 66.49079, 0.016869664, 67.615234)
 
 [node name="electrical_equipment_13" parent="." unique_id=1860328594 instance=ExtResource("73_1acxm")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 66.49079, 0.016869664, 66.00735)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 66.49079, 0.016869664, 66.09001)
 
 [node name="wooden_crate_hx_52" type="StaticBody3D" parent="." unique_id=986400634]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.711163, 0.026869997, 43.94196)
@@ -4126,3 +4123,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 141.66809, 0, 82.94048)
 
 [node name="wall_hs_15" parent="." unique_id=1069882491 instance=ExtResource("101_5ta2p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.24121, 0, 82.94048)
+
+[node name="pipes_hr_1_elbow_12" parent="." unique_id=60900162 instance=ExtResource("104_jnlqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.942184, 2.9213555, 75.00929)
+
+[node name="pipes_hr_1_horizontal_middle_12" parent="." unique_id=1950074423 instance=ExtResource("105_762o3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.160213, 2.9206572, 75.05277)
+
+[node name="pipes_hr_12" parent="." unique_id=690539372 instance=ExtResource("106_swjba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.359818, -0.37199855, 75.04838)
+
+[node name="pipes_hr_13" parent="." unique_id=1702465681 instance=ExtResource("106_swjba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.945557, 0.37991858, 75.03889)
+
+[node name="pipes_hr_1_horizontal_middle_22" parent="." unique_id=909928929 instance=ExtResource("107_3dt87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.23319, 3.6162536, 74.98026)
+
+[node name="pipes_hr_1_horizontal_middle_23" parent="." unique_id=927686718 instance=ExtResource("107_3dt87")]
+transform = Transform3D(1.3197036, 0, 0, 0, 1, 0, 0, 0, 1, 63.85485, 3.6162536, 74.98026)
+
+[node name="pipes_hr_1_horizontal_middle_24" parent="." unique_id=1643856891 instance=ExtResource("107_3dt87")]
+transform = Transform3D(-1.094651e-07, 0, -0.99999994, 0, 1, 0, 2.5042694, 0, -4.3711385e-08, 66.38773, 3.6162536, 72.09851)
+
+[node name="pipes_hr_1_elbow_13" parent="." unique_id=675082224 instance=ExtResource("104_jnlqa")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 56.35687, 2.9212778, 75.14633)
+
+[node name="pipes_hr_1_elbow_14" parent="." unique_id=918929426 instance=ExtResource("104_jnlqa")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 56.942837, 3.6234615, 75.042244)
+
+[node name="pipes_hr_1_elbow_15" parent="." unique_id=1521405379 instance=ExtResource("104_jnlqa")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 66.42128, 3.629729, 66.78982)
+
+[node name="pipes_hr_14" parent="." unique_id=535487411 instance=ExtResource("106_swjba")]
+transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 66.29922, 0.34192133, 66.83495)
+
+[node name="table_large_3_12" parent="." unique_id=1838379006 instance=ExtResource("109_fcxnf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.39186, 0.059837997, -9.821323)
+
+[node name="toolbox_mx_12" parent="." unique_id=1283641815 instance=ExtResource("110_j42v6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.25212, 0.057006683, -9.911297)
+
+[node name="chair_mp_3_42" parent="." unique_id=908393706 instance=ExtResource("111_6p6e0")]
+transform = Transform3D(-0.7843921, 0, -0.6202653, 0, 1, 0, 0.6202653, 0, -0.7843921, 158.45866, 0.057006, -8.131054)
+
+[node name="open_book_mp_12" parent="." unique_id=2124162609 instance=ExtResource("112_ri2l1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.51634, 0.98306865, -9.883094)
+
+[node name="plate_mp_13" parent="." unique_id=1986085536 instance=ExtResource("94_yegu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.95425, 0.9986956, -9.80039)
+
+[node name="ashtray_12" parent="." unique_id=869506544 instance=ExtResource("113_52qux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.75522, 0.9870583, -9.969492)

@@ -47,6 +47,7 @@ func _ready() -> void:
 	%FootstepTimer.timeout.connect(play_footstep)
 	%SoundArea.area_entered.connect(on_sound_area_entered)
 	%SoundArea.area_exited.connect(on_sound_area_exited)
+	%FlashlightHintTimer.timeout.connect(hide_flashlight_hint)
 	
 	if set_camera_as_active:
 		%Camera3D.make_current()
@@ -155,6 +156,12 @@ func on_interact_area_entered(area: Area3D) -> void:
 		elif interactable.id == Ids.INTERACTABLE_AREAS.KEY_DOOR:
 			hint_prompt.text = "Press F to open the door"
 			hint_prompt.visible = true
+		elif interactable.id == Ids.INTERACTABLE_AREAS.POWER_GENERATOR:
+			hint_prompt.text = "Press F to turn on the power"
+			hint_prompt.visible = true
+		elif interactable.id == Ids.INTERACTABLE_AREAS.GATE_BUTTON:
+			hint_prompt.text = "Press F to open the gates"
+			hint_prompt.visible = true
 
 func on_interact_area_exited(area: Area3D) -> void:
 	#var pickup = area.get_parent()
@@ -166,8 +173,11 @@ func _interact_with_current_interactable() -> void:
 	var interactable = current_interactable
 
 	if interactable is InteractableArea and not interactable.has_pre_requisites(inventory):
-		var missing_name = Ids.get_object_name(interactable.pre_requisites[0])
-		hint_prompt.text = "You need the %s. Go find it first!" % missing_name
+		if interactable.id == Ids.INTERACTABLE_AREAS.GATE_BUTTON and not GameState.power_on:
+			hint_prompt.text = "You need to turn on the power first!"
+		else:
+			var missing_name = Ids.get_object_name(interactable.pre_requisites[0])
+			hint_prompt.text = "You need the %s. Go find it first!" % missing_name
 		hint_prompt.visible = true
 		return
 
@@ -184,6 +194,7 @@ func _interact_with_current_interactable() -> void:
 		if interactable.id == Ids.INTERACTABLE_AREAS.FLASHLIGHT:
 			has_flashlight = true
 			turn_on_flashlight()
+			show_flashlight_hint()
 			inventory.append(Ids.OBJECTS.FLASHLIGHT)
 		interactable.activate()
 
@@ -194,6 +205,13 @@ func turn_on_flashlight():
 func turn_off_flashlight():
 	%flashlight.hide()
 	is_flashlight_on = false
+
+func show_flashlight_hint() -> void:
+	%FlashlightHint.visible = true
+	%FlashlightHintTimer.start()
+
+func hide_flashlight_hint() -> void:
+	%FlashlightHint.visible = false
 
 func _add_inventory_slot(pickup) -> void:
 	var slot := PanelContainer.new()
