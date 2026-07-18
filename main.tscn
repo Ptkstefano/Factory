@@ -1020,7 +1020,6 @@ panning_strength = 0.2
 parameters/looping = true
 
 [node name="PoweredLights" type="Node3D" parent="." unique_id=538639460]
-visible = false
 script = ExtResource("29_jq2sk")
 
 [node name="ceiling_lamp_4_off2" parent="PoweredLights" unique_id=1333495717 instance=ExtResource("29_qsp4k")]
@@ -1114,7 +1113,7 @@ area_range = 36.63
 area_size = Vector2(1, 0.21128511)
 
 [node name="ceiling_lamp_4_off7" parent="PoweredLights" unique_id=230696098 instance=ExtResource("29_qsp4k")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -45.82377, 5.945739, 39.132603)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -45.82377, 5.4625525, 39.132603)
 
 [node name="AreaLight3D" type="AreaLight3D" parent="PoweredLights/ceiling_lamp_4_off7" unique_id=1128472386]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.15886974, 0)
