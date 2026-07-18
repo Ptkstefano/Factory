@@ -9,6 +9,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		toggle_debug()
 
 func reset():
+	power_on = false
+	debug = false
+	game_ended = false
 	await get_tree().create_timer(1).timeout
 	get_tree().reload_current_scene()
 

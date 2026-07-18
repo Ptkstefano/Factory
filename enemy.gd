@@ -156,6 +156,9 @@ func update_line_of_sight():
 	raycast.force_raycast_update()
 	
 func update_detection_progress(delta):
+	if player.is_dead:
+		detection_progress = 0
+		return
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
 		if collider is Player:
