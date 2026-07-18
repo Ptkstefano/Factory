@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cv7d02yll1qet"]
 
 [ext_resource type="PackedScene" uid="uid://c6xlanquy1of5" path="res://level.tscn" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://dbqgsdfb7t3je" path="res://no_clip.gd" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cns6ok6veg2oi" path="res://player/player.tscn" id="2_player"]
 [ext_resource type="Script" uid="uid://dxposvhtfa52m" path="res://navigation_region_3d.gd" id="4_d13ii"]
 [ext_resource type="PackedScene" uid="uid://dlox4x6p1etvm" path="res://enemy.tscn" id="4_lquwl"]
@@ -624,15 +623,6 @@ environment = SubResource("Environment_lquwl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.749886, 0, -29.207726)
 metadata/_edit_lock_ = true
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1125490905]
-transform = Transform3D(0.09989775, 0.010498687, 0.99494237, -0.0010488536, 0.99994487, -0.010446164, -0.99499714, -5.974699e-10, 0.09990326, 16.683126, 1.4737873, 34.00021)
-script = ExtResource("2_h2yge")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=1432458769]
-visible = false
-spot_range = 184.548
-spot_attenuation = -0.62
-
 [node name="Enemy" parent="." unique_id=1046048868 instance=ExtResource("4_lquwl")]
 transform = Transform3D(0.1396284, 0, -0.990204, 0, 1, 0, 0.990204, 0, 0.1396284, -23.427149, 0.019379072, 34.598866)
 
@@ -655,7 +645,7 @@ spot_attenuation = 1.09
 spot_angle = 27.0
 spot_angle_attenuation = 1.5157171
 
-[node name="OmniLight3D" parent="Player" index="9" unique_id=1452056189]
+[node name="OmniLight3D" parent="Player" index="10" unique_id=1452056189]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3211598, 0)
 light_energy = 0.02
 light_specular = 0.0

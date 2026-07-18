@@ -255,6 +255,8 @@ func _add_inventory_slot(pickup) -> void:
 	inventory_box.add_child(slot)
 
 func play_footstep():
+	if is_dead:
+		return
 	if sound_area == Ids.SOUND_AREAS.INSIDE:
 		if Vector2(velocity.x, velocity.z).length() < 4.0:
 			%Footstep_concrete.play()
@@ -289,6 +291,8 @@ func make_dead():
 	%flashlight.hide()
 	#process_mode = Node.PROCESS_MODE_DISABLED
 	is_dead = true
+	await get_tree().create_timer(5).timeout
+	%DeathHint.show()
 
 func start_damage_flash() -> void:
 	
