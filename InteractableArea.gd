@@ -41,6 +41,8 @@ func activate():
 		GameState.power_on = true
 		Signals.power_on.emit()
 	if id == Ids.INTERACTABLE_AREAS.GATE_BUTTON:
+		%GateButtonLight.light_color = Color(0.0, 1.0, 0.0, 1.0)
+		%GateButtonLight.position.y = 1.48
 		%GateButtonAnimation.play('open_gate')
 		%GateSFX.play()
 
